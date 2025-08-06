@@ -1,103 +1,213 @@
-import Image from "next/image";
+"use client";
 
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(useGSAP);
+}
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const iconContainer = useRef<HTMLDivElement | null>(null);
+  const grid1 = useRef<HTMLDivElement | null>(null);
+  const grid2 = useRef<HTMLDivElement | null>(null);
+  const header = useRef<HTMLDivElement | null>(null);
+  const h1 = useRef<HTMLDivElement | null>(null);
+  const loopingAnimation = useRef<GSAPTimeline | null>(null);
+  const scrollUpAnimation = useRef<GSAPTimeline | null>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  useGSAP(
+    () => {
+      gsap.registerPlugin(ScrollTrigger);
+      const iconSet1 = gsap.utils.toArray(".icon1");
+      const iconSet2 = gsap.utils.toArray(".icon2");
+      //initial looping animation
+      loopingAnimation.current = gsap
+        .timeline({
+          repeat: -1,
+          defaults: {
+            ease: "power4.inOut",
+          },
+        })
+        // .set(grid1.current, {
+        //   opacity: 1,
+        // })
+        .to(iconSet1, {
+          scale: 0,
+          // delay: 1,
+          stagger: {
+            each: 0.5,
+            from: "edges",
+          },
+        })
+        .set(grid1.current, {
+          opacity: 0,
+        })
+        .set(grid2.current, {
+          opacity: 1,
+        })
+        .from(iconSet2, {
+          scale: 0,
+          stagger: {
+            each: 0.5,
+            from: "edges",
+          },
+        })
+        .to(iconSet2, {
+          scale: 0,
+          stagger: {
+            each: 0.5,
+            from: "edges",
+          },
+        })
+        .set(grid1.current, {
+          opacity: 1,
+        })
+        .set(grid2.current, {
+          opacity: 0,
+        })
+        .to(iconSet1, {
+          scale: 1,
+          // delay: 1,
+          stagger: {
+            each: 0.5,
+            from: "edges",
+          },
+        });
+
+      //scrollup and scale animation
+      scrollUpAnimation.current = gsap
+        .timeline({})
+        .to(iconContainer.current, {
+          yPercent: -100,
+        })
+        .to(
+          h1.current,
+          {
+            opacity: 0,
+            yPercent: -25,
+          },
+          "<",
+        )
+        .to(iconContainer.current, { scale: 0.2 });
+
+      //stop initial animation on scroll
+      ScrollTrigger.create({
+        trigger: header.current,
+        start: "top+=50 top",
+        end: "top+=50 top",
+        onEnter: () => {
+          // Optional: animate to end smoothly
+          gsap.to(loopingAnimation.current, {
+            time: loopingAnimation.current?.duration(),
+            // duration: 0.5,
+            onComplete: () => loopingAnimation.current?.pause(),
+          });
+        },
+        onEnterBack: () => {
+          loopingAnimation.current?.restart(true);
+        },
+      });
+
+      //control scrollup and scale animation progress through scrolling
+      ScrollTrigger.create({
+        trigger: header.current,
+        pin: header.current,
+        pinSpacing: true,
+        scrub: 1,
+        animation: scrollUpAnimation.current,
+        markers: true,
+      });
+
+      // ScrollTrigger.create({
+      //   trigger: header.current,
+      //   pin: header.current,
+      //   pinSpacing: true,
+      //   scrub: true,
+      //   animation: scrollUpAnimation.current,
+      //   onUpdate: (self) => {
+      //     const scrolledDown = self.direction === 1 && self.progress > 0;
+      //     const scrolledUp = self.direction === -1 && self.progress === 0;
+
+      //     if (scrolledDown && loopingAnimation.current?.isActive()) {
+      //       loopingAnimation.current.pause(loopingAnimation.current.duration());
+      //     }
+
+      //     if (
+      //       scrolledUp &&
+      //       loopingAnimation.current?.time() ===
+      //         loopingAnimation.current.duration()
+      //     ) {
+      //       loopingAnimation.current.restart(true);
+      //     }
+      //   },
+      //   markers: true,
+      // });
+    },
+    { scope: iconContainer },
+  );
+
+  return (
+    <div className="h-[200vh] px-8">
+      <section className="flex h-dvh flex-col pb-4" ref={header}>
+        <div className="w-full flex-1 pt-20">
+          <div
+            className="flex size-full flex-col items-center justify-center space-y-8"
+            ref={h1}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <h1 className="font-hanken-grotesk mx-auto text-center text-8xl font-black text-black lg:max-w-6xl xl:text-9xl">
+              Building the web, one pixel at a time
+            </h1>
+            <p className="font-semibold">Witty comment about me</p>
+            <button className="font-archivo bg-lime-400 px-3 py-2.5 font-semibold">
+              pill buton
+            </button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="relative h-80" ref={iconContainer}>
+          <div
+            className="absolute bottom-0 left-0 grid h-full w-full grid-cols-5 gap-3 opacity-100"
+            ref={grid1}
+          >
+            <div className="icon1 rounded-xl bg-green-400 will-change-transform">
+              1
+            </div>
+            <div className="icon1 rounded-xl bg-amber-400 will-change-transform">
+              2
+            </div>
+            <div className="icon1 rounded-xl bg-sky-400 will-change-transform">
+              3
+            </div>
+            <div className="icon1 rounded-xl bg-orange-400 will-change-transform">
+              4
+            </div>
+            <div className="icon1 rounded-xl bg-violet-400 will-change-transform">
+              5
+            </div>
+          </div>
+          <div
+            className="absolute bottom-0 left-0 grid h-full w-full grid-cols-5 gap-3 opacity-0"
+            ref={grid2}
+          >
+            <div className="icon2 rounded-xl bg-amber-400 will-change-transform">
+              6
+            </div>
+            <div className="icon2 rounded-xl bg-sky-400 will-change-transform">
+              7
+            </div>
+            <div className="icon2 rounded-xl bg-orange-400 will-change-transform">
+              8
+            </div>
+            <div className="icon2 rounded-xl bg-violet-400 will-change-transform">
+              9
+            </div>
+            <div className="icon2 rounded-xl bg-green-400 will-change-transform">
+              10
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
