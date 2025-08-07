@@ -285,14 +285,14 @@ export default function Home() {
                 </div>
               </div>
               {/* <span className="text-content //translate-x-[10%] opacity-0"></span> */}
+              <span className="text-content translate-x-[10%] opacity-0">
+                Routing smarter.
+              </span>
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-[200%] rounded-xl opacity-1 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
                   <Next className="size-full" />
                 </div>
               </div>
-              <span className="text-content translate-x-[10%] opacity-0">
-                Routing smarter.
-              </span>
             </div>
 
             {/* ICONS */}
