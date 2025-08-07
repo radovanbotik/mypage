@@ -178,7 +178,7 @@ export default function Home() {
         .to(iconsInSequence3[2], { x: 0 })
         .to(wordsInSentence3, { opacity: 1, x: 0 }, "<")
         .to([iconsInSequence3[3], iconsInSequence3[4]], { x: 0 })
-        .to(wordsInSentence4[1], { opacity: 1 })
+        // .to(wordsInSentence4[1], { opacity: 1 })
         .to(wordsInSentence4, { x: 0, opacity: 1 });
 
       ScrollTrigger.create({
@@ -235,7 +235,7 @@ export default function Home() {
             {/* SENTENCE 1 */}
             <div className="sentence1 absolute -top-full left-0 z-10 flex w-full items-center justify-center gap-1 text-5xl whitespace-nowrap select-none">
               <span className="text-content -translate-x-[10%] opacity-0">
-                My UI is built
+                Old faithful,
               </span>
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] translate-y-full opacity-0 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
@@ -243,13 +243,13 @@ export default function Home() {
                 </div>
               </div>
               <span className="text-content -translate-x-[10%] opacity-0">
-                with JavaScript
+                still breaking ground.
               </span>
             </div>
             {/* SENTENCE 2 */}
             <div className="sentence2 absolute top-0 left-0 z-10 flex w-full items-center justify-center gap-1 text-5xl whitespace-nowrap select-none">
               <span className="text-content -translate-x-[10%] opacity-0">
-                TypeScript
+                Typings matter.
               </span>
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] rounded-xl opacity-0 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
@@ -257,13 +257,13 @@ export default function Home() {
                 </div>
               </div>
               <span className="text-content opacity-0">
-                handles all my type-checks
+                Ship with confidence.
               </span>
             </div>
             {/* SENTENCE 3 */}
             <div className="sentence3 absolute top-full left-0 z-10 flex w-full items-center justify-center gap-1 text-5xl whitespace-nowrap select-none">
               <span className="text-content -translate-x-[10%] opacity-0">
-                Designs are beautiful thanks
+                No stylesheets,
               </span>
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-full rounded-xl opacity-0 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
@@ -271,29 +271,27 @@ export default function Home() {
                 </div>
               </div>
               <span className="text-content translate-x-[10%] opacity-0">
-                to Tailwind
+                just utility bliss.
               </span>
             </div>
             {/* SENTENCE 4 */}
             <div className="sentence4 absolute top-[200%] left-0 z-10 flex w-full items-center justify-center gap-1 text-5xl whitespace-nowrap select-none">
               <span className="text-content -translate-x-[10%] opacity-0">
-                My
+                Reacting quickly.
               </span>
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-[200%] rounded-xl opacity-1 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
                   <React className="size-full" />
                 </div>
               </div>
-              <span className="text-content //translate-x-[10%] opacity-0">
-                performance is powered by
-              </span>
+              {/* <span className="text-content //translate-x-[10%] opacity-0"></span> */}
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-[200%] rounded-xl opacity-1 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
                   <Next className="size-full" />
                 </div>
               </div>
               <span className="text-content translate-x-[10%] opacity-0">
-                React and Next.js.
+                Routing smarter.
               </span>
             </div>
 
