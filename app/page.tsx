@@ -16,20 +16,6 @@ export default function Home() {
   const h1 = useRef<HTMLDivElement | null>(null);
   const scrollUpAnimation = useRef<GSAPTimeline | null>(null);
 
-  //icon-sequence1
-  const icon_1_sequence_1 = useRef<HTMLDivElement | null>(null);
-  const icon_2_sequence_1 = useRef<HTMLDivElement | null>(null);
-  const icon_3_sequence_1 = useRef<HTMLDivElement | null>(null);
-  const icon_4_sequence_1 = useRef<HTMLDivElement | null>(null);
-  const icon_5_sequence_1 = useRef<HTMLDivElement | null>(null);
-
-  //icon-sequence2
-  const icon_1_sequence_2 = useRef<HTMLDivElement | null>(null);
-  const icon_2_sequence_2 = useRef<HTMLDivElement | null>(null);
-  const icon_3_sequence_2 = useRef<HTMLDivElement | null>(null);
-  const icon_4_sequence_2 = useRef<HTMLDivElement | null>(null);
-  const icon_5_sequence_2 = useRef<HTMLDivElement | null>(null);
-
   useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
@@ -48,6 +34,31 @@ export default function Home() {
       // Timeline setup
       scrollUpAnimation.current = gsap
         .timeline()
+        .set(iconsInSequence3[0], {
+          x:
+            iconsInSequence2[0].getBoundingClientRect().left -
+            iconsInSequence3[0].getBoundingClientRect().left,
+        })
+        .set(iconsInSequence3[1], {
+          x:
+            iconsInSequence2[1].getBoundingClientRect().left -
+            iconsInSequence3[1].getBoundingClientRect().left,
+        })
+        // .set(iconsInSequence3[2], {
+        //   x:
+        //     iconsInSequence2[2].getBoundingClientRect().left -
+        //     iconsInSequence3[2].getBoundingClientRect().left,
+        // })
+        // .set(iconsInSequence3[3], {
+        //   x:
+        //     iconsInSequence2[3].getBoundingClientRect().left -
+        //     iconsInSequence3[3].getBoundingClientRect().left,
+        // })
+        // .set(iconsInSequence3[4], {
+        //   x:
+        //     iconsInSequence2[4].getBoundingClientRect().left -
+        //     iconsInSequence3[4].getBoundingClientRect().left,
+        // })
         .to(iconsInSequence1, {
           y: originalOffset,
           stagger: { each: 0.15, from: "start" },
@@ -81,26 +92,35 @@ export default function Home() {
         .set(iconsInSequence1, { opacity: 0 }, "<")
         .set(iconsInSequence2, { opacity: 1 }, "<")
         .set(iconsInSequence3, { opacity: 1 }, "<")
-        .set(iconsInSequence2[0], { opacity: 0 })
+        .set(
+          iconsInSequence2[0],
+          {
+            opacity: 0,
+          },
+          "<",
+        )
         .to(iconsInSequence3[0], {
           yPercent: -100,
-        })
-        .to(iconsInSequence3[0], {
-          xPercent: 200,
         })
         .set(wordsInSentence1[0], {
           opacity: 1,
         })
         .to(iconsInSequence3[0], {
-          xPercent: 300,
+          x: 0,
+          backgroundColor: "black",
         })
-        .to(
-          wordsInSentence1,
-          {
-            xPercent: 10,
-          },
-          "<",
-        )
+        .to(iconsInSequence3[1], {
+          x: 0,
+          backgroundColor: "black",
+        })
+        // .to(
+        //   wordsInSentence1,
+        //   {
+        //     xPercent: 10,
+        //   },
+        //   "<",
+        // )
+
         .set(
           wordsInSentence1[1],
           {
@@ -139,7 +159,7 @@ export default function Home() {
           </div>
         </div>
         <div
-          className="//absolute //bottom-0 flex w-full items-start justify-center opacity-100 [&>*]:aspect-square [&>*]:w-full"
+          className="//absolute //bottom-0 flex w-full items-start justify-center gap-0 opacity-100 [&>*]:aspect-square [&>*]:w-full [&>*]:max-w-60"
           ref={grid1}
         >
           <div className="icon1 rounded-xl bg-green-400 object-cover will-change-transform">
@@ -159,29 +179,32 @@ export default function Home() {
           </div>
         </div>
         <div className="absolute top-1/2 w-full -translate-y-1/2">
-          <div className="relative inset-0 mx-auto flex h-full w-fit opacity-100">
-            <div className="sentence1 div absolute -top-full left-0 z-10 flex text-6xl whitespace-nowrap select-none">
-              <span className="text-content -translate-x-[10%] opacity-0">
-                a word
-              </span>
-              <div className="icon3 inline-block aspect-square w-[60px] -translate-x-[300%] translate-y-full rounded-xl bg-green-300 object-cover opacity-0 will-change-transform"></div>
-              <span className="text-content -translate-x-[10%] opacity-0">
-                b word
+          <div className="relative mx-auto flex h-full w-fit justify-center opacity-100">
+            <div className="sentence1 //bg-amber-300 absolute -top-full left-0 z-10 flex w-full items-center justify-center gap-1 text-6xl whitespace-nowrap select-none">
+              <span className="text-content opacity-0">a word aa aa aaaaa</span>
+              <div className="icon3 inline-block aspect-square h-[60px] w-[60px] translate-y-full rounded-xl bg-green-300 object-cover opacity-0 will-change-transform"></div>
+              <span className="text-content opacity-0">
+                b word aaaaa asdasaaaaaa
               </span>
             </div>
-            <div className="icon2 aspect-square w-[60px] rounded-xl bg-green-300 opacity-0 will-change-transform">
+            <div className="sentence1 //bg-amber-300 absolute top-0 left-0 z-10 flex w-full items-center justify-center gap-1 text-6xl whitespace-nowrap select-none">
+              <span className="text-content opacity-0">aeeeaaa</span>
+              <div className="icon3 inline-block aspect-square h-[60px] w-[60px] rounded-xl bg-amber-300 object-cover opacity-1 will-change-transform"></div>
+              <span className="text-content opacity-0">zoz a</span>
+            </div>
+            <div className="icon2 aspect-square w-[60px] rounded-xl bg-green-300 opacity-100 will-change-transform">
               12
             </div>
-            <div className="icon2 aspect-square w-[60px] rounded-xl bg-amber-300 opacity-0 will-change-transform">
+            <div className="icon2 aspect-square w-[60px] rounded-xl bg-amber-300 opacity-100 will-change-transform">
               22
             </div>
-            <div className="icon2 aspect-square w-[60px] rounded-xl bg-sky-300 opacity-0 will-change-transform">
+            <div className="icon2 aspect-square w-[60px] rounded-xl bg-sky-300 opacity-100 will-change-transform">
               32
             </div>
-            <div className="icon2 aspect-square w-[60px] rounded-xl bg-orange-300 opacity-0 will-change-transform">
+            <div className="icon2 aspect-square w-[60px] rounded-xl bg-orange-300 opacity-100 will-change-transform">
               42
             </div>
-            <div className="icon2 aspect-square w-[60px] rounded-xl bg-violet-300 opacity-0 will-change-transform">
+            <div className="icon2 aspect-square w-[60px] rounded-xl bg-violet-300 opacity-100 will-change-transform">
               52
             </div>
           </div>
