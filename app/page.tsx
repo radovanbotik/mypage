@@ -10,6 +10,8 @@ import { TypeScript } from "@/public/images/techstack/typescript";
 import { Tailwind } from "@/public/images/techstack/tailwindcss";
 import { React } from "@/public/images/techstack/react";
 import { Next } from "@/public/images/techstack/nextdotjs";
+import Hero from "./components/hero-section/hero";
+import StudioHeaderPattern from "./components/artifacts/pattern";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP);
@@ -18,7 +20,7 @@ export default function Home() {
   const grid1 = useRef<HTMLDivElement | null>(null);
   const page = useRef<HTMLDivElement | null>(null);
   const header = useRef<HTMLDivElement | null>(null);
-  const h1 = useRef<HTMLDivElement | null>(null);
+  const hero = useRef<HTMLDivElement | null>(null);
   const scrollUpAnimation = useRef<GSAPTimeline | null>(null);
 
   useGSAP(
@@ -40,14 +42,15 @@ export default function Home() {
         ".sentence4 .text-content",
       ) as HTMLDivElement[];
 
-      const grid = grid1.current;
-      // Initial translation based on original size
+      const grid = grid1.current as HTMLDivElement;
       const originalOffset =
         -window.innerHeight / 2 + grid.getBoundingClientRect().height / 2;
 
       // Timeline setup
       scrollUpAnimation.current = gsap
-        .timeline()
+        .timeline({
+          ease: "circ.inOut",
+        })
         .set(iconsInSequence3[0], {
           x:
             iconsInSequence2[0].getBoundingClientRect().left -
@@ -73,13 +76,28 @@ export default function Home() {
             iconsInSequence2[4].getBoundingClientRect().left -
             iconsInSequence3[4].getBoundingClientRect().left,
         })
+
         .to(iconsInSequence1, {
           y: originalOffset,
           stagger: { each: 0.15, from: "start" },
-          ease: "power2.out",
         })
         .to(
-          h1.current,
+          header.current,
+          {
+            paddingBottom: 0,
+          },
+          "<",
+        )
+        // .to(
+        //   h1.current,
+        //   {
+        //     opacity: 0,
+        //     yPercent: -25,
+        //   },
+        //   "<",
+        // )
+        .to(
+          hero.current,
           {
             opacity: 0,
             yPercent: -25,
@@ -100,11 +118,13 @@ export default function Home() {
           },
         })
         .to(grid, { gap: 0 }, "<")
-        .to(page.current, {
-          backgroundColor: "white",
-          color: "black",
-        })
-        .set(iconsInSequence1, { opacity: 0 }, "<")
+        //COLORCHANGE
+        // .to(page.current, {
+        //   backgroundColor: "white",
+        //   color: "black",
+        // })
+        .to(iconsInSequence1, { width: 60 })
+        .set(iconsInSequence1, { opacity: 0 })
         // .set(iconsInSequence2, { opacity: 1 }, "<")
         .set(iconsInSequence3, { opacity: 1 }, "<")
         //ICON1
@@ -194,24 +214,15 @@ export default function Home() {
   );
 
   return (
-    <div className="h-[200vh] bg-black px-8 text-white" ref={page}>
-      <section className="relative flex h-dvh flex-col pb-4" ref={header}>
-        <div className="w-full flex-1">
-          <div
-            className="flex size-full flex-col items-center justify-center space-y-6"
-            ref={h1}
-          >
-            <h1 className="font-hanken-grotesk mx-auto text-center text-4xl font-black text-white lg:max-w-4xl xl:text-8xl">
-              Building the web, one pixel at a time
-            </h1>
-            <p className="font-semibold">Witty comment about me</p>
-            <button className="font-archivo bg-lime-400 px-3 py-2.5 font-semibold">
-              I don't want to see a cool animation
-            </button>
-          </div>
-        </div>
+    <div className="//bg-black relative text-white" ref={page}>
+      <section
+        className="relative flex h-dvh flex-col overflow-hidden px-8 pb-4"
+        ref={header}
+      >
+        <Hero ref={hero} />
+
         <div
-          className="//absolute //bottom-0 flex w-full items-start justify-center gap-3 opacity-100 [&>*]:aspect-square [&>*]:w-full [&>*]:max-w-60"
+          className="flex w-full items-start justify-center gap-3 opacity-100 [&>*]:aspect-square [&>*]:w-full [&>*]:max-w-36"
           ref={grid1}
         >
           <div className="icon1 overflow-hidden rounded-xl object-cover will-change-transform">
@@ -279,7 +290,7 @@ export default function Home() {
               <span className="text-content -translate-x-[10%] opacity-0">
                 Reacting quickly.
               </span>
-              <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-[200%] rounded-xl opacity-1 will-change-transform">
+              <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-[200%] rounded-xl opacity-0 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
                   <React className="size-full" />
                 </div>
@@ -288,7 +299,7 @@ export default function Home() {
               <span className="text-content translate-x-[10%] opacity-0">
                 Routing smarter.
               </span>
-              <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-[200%] rounded-xl opacity-1 will-change-transform">
+              <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-[200%] rounded-xl opacity-0 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
                   <Next className="size-full" />
                 </div>
@@ -303,6 +314,25 @@ export default function Home() {
             <div className="icon2 invsible aspect-square w-[60px] rounded-xl opacity-0 will-change-transform"></div>
           </div>
         </div>
+        {/* <svg
+          viewBox="0 0 1024 1024"
+          aria-hidden="true"
+          className="absolute top-1/2 left-1/2 -z-10 size-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
+        >
+          <circle
+            r={512}
+            cx={512}
+            cy={512}
+            fill="url(#827591b1-ce8c-4110-b064-7cb85a0b1217)"
+            fillOpacity="0.7"
+          />
+          <defs>
+            <radialGradient id="827591b1-ce8c-4110-b064-7cb85a0b1217">
+              <stop stopColor="#7775D6" />
+              <stop offset={1} stopColor="#E935C1" />
+            </radialGradient>
+          </defs>
+        </svg> */}
       </section>
     </div>
   );
