@@ -12,7 +12,7 @@ import { LinkedIn } from "@/public/images/social/linkedin";
 export function FabMagnetic() {
   return (
     <Popover className="relative">
-      <PopoverButton className="fixed right-10 bottom-10 text-white">
+      <PopoverButton className="fixed bottom-10 left-6 text-white">
         {`ws://`}
       </PopoverButton>
       <PopoverPanel

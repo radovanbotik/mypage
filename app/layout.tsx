@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "./components/navigation/navbar";
 import StudioHeaderPattern from "./components/artifacts/pattern";
 import { FabMagnetic } from "./components/fab/Fab";
+import { Stats } from "./components/hero-section/stats";
 
 const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin"],
@@ -32,10 +33,12 @@ export default function RootLayout({
       <body
         className={`${hankenGrotesk.variable} ${archivo.variable} relative antialiased`}
       >
-        <Navbar />
         <StudioHeaderPattern className="absolute top-0 left-0 size-full text-white" />
-        {children}
-        <FabMagnetic />
+        <div className="//w-1/2 relative">
+          <Navbar />
+          {children}
+        </div>
+        {/* <Stats /> */}
       </body>
     </html>
   );

@@ -18,7 +18,7 @@ export function Navbar() {
   const isActive = (href: string) => href === pathname;
 
   return (
-    <div className="//bg-white fixed top-4 left-0 z-40 flex w-full items-center px-4 py-4 text-white sm:px-6">
+    <div className="//bg-white absolute top-4 left-0 z-40 flex w-full items-center px-4 py-4 text-white sm:px-6">
       {/* <button
         type="button"
         onClick={() => setSidebarOpen(true)}

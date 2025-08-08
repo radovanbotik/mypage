@@ -56,13 +56,13 @@ export default function Hero({ ref, tech }: Props) {
       headline: "Because Everything Runs on ",
       underline: "JavaScript",
       subheadline:
-        "The language that builds the web… and the occasional mysterious bug.",
+        "I bend JavaScript to my will… even when it tries to break everything.",
     },
     ts: {
       headline: "Strongly Typed, Strongly Built - ",
       underline: "TypeScript",
       subheadline:
-        "Fixing what JavaScript breaks, one type definition at a time.",
+        "I use TypeScript to fix the bugs JavaScript swore weren’t its fault.",
     },
     tw: {
       headline: "Utility-First, ",
@@ -73,13 +73,13 @@ export default function Hero({ ref, tech }: Props) {
       headline: "Interfaces That Just… ",
       underline: "React",
       subheadline:
-        "Where components, hooks, and state get along… most of the time.",
+        "I build components so smooth, even state and props play nice.",
     },
     nx: {
       headline: "The Future of the Web? Probably ",
       underline: "Next.js",
       subheadline:
-        "Blazing-fast, SEO-ready, and built to take projects from idea to production.",
+        "I harness Next.js for blazing-fast, SEO-friendly apps that make me look even faster.",
     },
   };
 
