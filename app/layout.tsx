@@ -3,7 +3,6 @@ import { Hanken_Grotesk, Archivo } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "./components/navigation/navbar";
 import StudioHeaderPattern from "./components/artifacts/pattern";
-import { FabMagnetic } from "./components/fab/Fab";
 import { Stats } from "./components/hero-section/stats";
 
 const hankenGrotesk = Hanken_Grotesk({

@@ -1,21 +1,87 @@
+"use client";
+
 import { cn } from "@/app/lib/cn";
 import { SVGProps } from "react";
+
+import { gsap } from "gsap";
+import { TextPlugin } from "gsap/TextPlugin";
+import { useGSAP } from "@gsap/react";
+import { ComponentPropsWithRef, useRef } from "react";
 
 type Props = SVGProps<SVGSVGElement>;
 
 export function ArrowDashed({ className, ref }: Props) {
+  const tl = useRef<GSAPTimeline | null>(null);
+  const svg = useRef<SVGSVGElement | null>(null);
+
+  /*useGSAP(
+    () => {
+      gsap.registerPlugin(TextPlugin);
+
+      const q = gsap.utils.selector(svg); // scoped selector
+      const paths = q("path");
+
+      // 1) Add dashed-stroke styling (on the same paths as the fills)
+      gsap.set(paths, {
+        stroke: "#ef4444",
+        strokeWidth: 3,
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        // Start with a dash+gap sum of 28 (we'll keep this constant)
+        strokeDasharray: "16 12",
+        strokeDashoffset: 0,
+      });
+
+      // 2) Infinite dash motion (offset) – independent of the main timeline
+      //    Keep it linear so it feels continuous.
+      const dashMover = gsap.to(paths, {
+        strokeDashoffset: "-=28", // equals 16+12
+        duration: 1.2,
+        ease: "none",
+        repeat: -1,
+        // small stagger so the motion feels “flowy” down the arrow
+        stagger: { each: 0.15 },
+      });
+
+      // 3) Main timeline: “shorten” the dashes by animating dasharray
+      tl.current = gsap.timeline({
+        defaults: { ease: "circ.inOut" },
+        yoyo: true,
+        repeat: -1,
+      });
+
+      // Shorten/lengthen:
+      // Keep the sum constant: 16+12 = 28, 6+22 = 28 (so spacing doesn't drift)
+      tl.current.to(paths, {
+        keyframes: [
+          { strokeDasharray: "6 22", duration: 0.6 },
+          { strokeDasharray: "16 12", duration: 0.6 },
+        ],
+        stagger: { each: 0.15 },
+      });
+
+      // Cleanup on unmount
+      return () => {
+        tl.current?.kill();
+        dashMover.kill();
+      };
+    },
+    { scope: svg },
+  );*/
   return (
     <svg
-      //   width="212"
-      //   height="35"
       viewBox="0 0 212 35"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      ref={ref}
-      className={cn(className)}
+      ref={svg}
+      className={cn("animate-pulse", className)}
     >
       <path
-        d="M190.916 20.2375C188.137 20.0165 172.817 20.2582 177.546 14.4895C181.259 9.96044 191.408 14.5482 196.275 12.8683C194.704 9.86282 192.191 7.6277 191.624 4.07806C190.96 -0.0788539 192.553 -1.12922 195.779 1.2564C198.293 3.11496 200.228 6.4205 202.866 8.4536C205.79 10.706 210.228 13.0985 211.368 16.8561C212.445 20.4068 210.57 22.1703 208.124 24.377C205.191 27.0217 202.706 31.314 199.464 33.4618C196.38 35.5048 194.187 34.6447 194.503 30.7916C194.778 27.4426 198.174 23.646 199.861 20.9185C199.254 20.7118 190.975 19.6591 190.916 20.2375C190.926 20.1391 187.813 19.9906 190.916 20.2375Z"
+        d=" M190.916 20.2375C188.137 20.0165 172.817 20.2582 177.546 14.4895C181.259 9.96044 191.408 14.5482 196.275 12.8683C194.704 9.86282 192.191 7.6277 191.624 4.07806C190.96 -0.0788539 192.553 -1.12922 195.779 1.2564C198.293 3.11496 200.228 6.4205 202.866 8.4536C205.79 10.706 210.228 13.0985 211.368 16.8561C212.445 20.4068 210.57 22.1703 208.124 24.377C205.191 27.0217 202.706 31.314 199.464 33.4618C196.38 35.5048 194.187 34.6447 194.503 30.7916C194.778 27.4426 198.174 23.646 199.861 20.9185C199.254 20.7118 190.975 19.6591 190.916 20.2375C190.926 20.1391 187.813 19.9906 190.916 20.2375Z"
+        fill="#38bdf8"
+      />
+      <path
+        d="M146.228 12.0739C150.605 12.0739 161.11 11.3737 163.788 15.7477C166.809 20.6817 157.264 20.2363 154.527 20.1155C150.094 19.9201 138.693 21.9879 135.279 18.2768C129.649 12.1572 143.329 12.0739 146.228 12.0739Z"
         fill="#38bdf8"
       />
       <path
@@ -26,10 +92,7 @@ export function ArrowDashed({ className, ref }: Props) {
         d="M64.9402 15.7854C60.9705 15.7854 49.1968 17.0137 46.1339 14.2342C40.3134 8.95255 53.784 7.85554 55.8774 7.73892C60.6285 7.47428 71.5045 6.90954 75.369 9.73607C83.1194 15.4043 68.1677 15.7854 64.9402 15.7854Z"
         fill="#38bdf8"
       />
-      <path
-        d="M146.228 12.0739C150.605 12.0739 161.11 11.3737 163.788 15.7477C166.809 20.6817 157.264 20.2363 154.527 20.1155C150.094 19.9201 138.693 21.9879 135.279 18.2768C129.649 12.1572 143.329 12.0739 146.228 12.0739Z"
-        fill="#38bdf8"
-      />
+
       <path
         d="M22.7282 13.9295C19.2125 13.9295 15.7352 13.7908 12.2281 13.5411C9.83338 13.3705 3.37092 14.312 1.62319 13.0145C-4.92031 8.15641 10.2964 7.69875 12.3676 7.58401C18.3718 7.2511 26.1069 5.7052 31.8719 7.67818C35.2614 8.83843 37.3299 10.8106 33.6427 13.0402C30.782 14.7704 25.904 13.9295 22.7282 13.9295Z"
         fill="#38bdf8"

@@ -1,7 +1,7 @@
 export function Stats() {
   return (
     <div className="font-hanken-grotesk //top-1/2 //left-6 //-translate-y-1/2 fixed right-4 bottom-4 z-10 hidden lg:block">
-      <div className="w-80 rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur-xs">
+      <div className="//backdrop-blur-xs w-80 rounded-2xl border border-white/20 bg-white/10 p-6">
         <div className="mb-6 text-center">
           <div className="text-2xl font-bold text-white">3+</div>
           <div className="text-sm text-gray-300">Years Experience</div>

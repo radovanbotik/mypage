@@ -35,6 +35,9 @@ export default function Home() {
       const iconsInSequence1 = gsap.utils.toArray(".icon1") as HTMLDivElement[];
       const iconsInSequence2 = gsap.utils.toArray(".icon2") as HTMLDivElement[];
       const iconsInSequence3 = gsap.utils.toArray(".icon3") as HTMLDivElement[];
+      const wordsInSentence0 = gsap.utils.toArray(
+        ".sentence0 .text-content",
+      ) as HTMLDivElement[];
       const wordsInSentence1 = gsap.utils.toArray(
         ".sentence1 .text-content",
       ) as HTMLDivElement[];
@@ -148,10 +151,10 @@ export default function Home() {
         .to(iconsInSequence3[0], {
           yPercent: -100,
         })
+        .set(wordsInSentence0, { opacity: 1 })
 
         .to(iconsInSequence3[0], {
           x: 0,
-          // backgroundColor: "black",
         })
         .to(wordsInSentence1[0], {
           opacity: 1,
@@ -165,7 +168,6 @@ export default function Home() {
         )
         .to(iconsInSequence3[0], {
           x: 0,
-          // backgroundColor: "black",
         })
         //ICON2
         .set(
@@ -175,6 +177,10 @@ export default function Home() {
           },
           "<",
         )
+
+        .to(iconsInSequence3[1], {
+          x: 0,
+        })
         .to(
           wordsInSentence1[1],
           {
@@ -182,10 +188,6 @@ export default function Home() {
           },
           "<",
         )
-        .to(iconsInSequence3[1], {
-          x: 0,
-          // backgroundColor: "black",
-        })
         .to(iconsInSequence3[2], { y: 0 }, "<")
         .set(iconsInSequence2[2], { opacity: 0 }, "<")
         .to([iconsInSequence3[3], iconsInSequence3[4]], { y: 0 }, "<")
@@ -208,7 +210,6 @@ export default function Home() {
         .to(iconsInSequence3[2], { x: 0 })
         .to(wordsInSentence3, { opacity: 1, x: 0 }, "<")
         .to([iconsInSequence3[3], iconsInSequence3[4]], { x: 0 })
-        // .to(wordsInSentence4[1], { opacity: 1 })
         .to(wordsInSentence4, { x: 0, opacity: 1 });
 
       ScrollTrigger.create({
@@ -238,31 +239,31 @@ export default function Home() {
           ref={grid1}
         >
           <div
-            className="icon1 cursor-pointer overflow-hidden will-change-transform"
+            className="icon1 cursor-pointer will-change-transform"
             onClick={() => setTech("js")}
           >
             <Javacript className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 cursor-pointer overflow-hidden will-change-transform"
+            className="icon1 cursor-pointer will-change-transform"
             onClick={() => setTech("ts")}
           >
             <TypeScript className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 cursor-pointer overflow-hidden will-change-transform"
+            className="icon1 cursor-pointer will-change-transform"
             onClick={() => setTech("tw")}
           >
             <Tailwind className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 cursor-pointer overflow-hidden will-change-transform"
+            className="icon1 cursor-pointer will-change-transform"
             onClick={() => setTech("rx")}
           >
             <React className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 cursor-pointer overflow-hidden will-change-transform"
+            className="icon1 cursor-pointer will-change-transform"
             onClick={() => setTech("nx")}
           >
             <Next className="size-full rounded-lg border-2 border-black" />
@@ -272,7 +273,7 @@ export default function Home() {
             ref={arrow}
           >
             <div className="font-archivo text-2xl whitespace-nowrap">
-              These are clickable
+              {!tech ? "These are clickable" : "Keep going..."}
             </div>
             <ArrowDashed className="//w-56 shrink-0" />
           </div>
@@ -280,10 +281,14 @@ export default function Home() {
         {/* <section className="h-screen">yo</section> */}
         <div className="font-archivo absolute top-1/2 left-0 w-full -translate-y-1/2 font-bold tracking-tight">
           <div className="relative mx-auto flex h-full w-fit justify-center opacity-100">
+            {/* SENTENCE 0 */}
+            {/* <div className="sentence0 absolute -top-[300%] left-0 z-10 mx-auto flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-2xl">
+              <span className="text-content opacity-0">My Stack:</span>
+            </div> */}
             {/* SENTENCE 1 */}
             <div className="sentence1 absolute -top-full left-0 z-10 mx-auto flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
               <span className="text-content -translate-x-[10%] opacity-0">
-                Old faithful,
+                I tame JavaScript.
               </span>
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] translate-y-full opacity-0 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
@@ -291,27 +296,25 @@ export default function Home() {
                 </div>
               </div>
               <span className="text-content -translate-x-[10%] opacity-0">
-                still breaking ground.
+                It fights back.
               </span>
             </div>
             {/* SENTENCE 2 */}
             <div className="sentence2 absolute top-0 left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
               <span className="text-content -translate-x-[10%] opacity-0">
-                Typings matter.
+                TypeScript steps in.
               </span>
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] rounded-xl opacity-0 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
                   <TypeScript className="size-full" />
                 </div>
               </div>
-              <span className="text-content opacity-0">
-                Ship with confidence.
-              </span>
+              <span className="text-content opacity-0">Bugs back off.</span>
             </div>
             {/* SENTENCE 3 */}
             <div className="sentence3 absolute top-full left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
               <span className="text-content -translate-x-[10%] opacity-0">
-                No stylesheets,
+                I wrangle classes.
               </span>
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-full rounded-xl opacity-0 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
@@ -319,13 +322,13 @@ export default function Home() {
                 </div>
               </div>
               <span className="text-content translate-x-[10%] opacity-0">
-                just utility bliss.
+                UIs behave.
               </span>
             </div>
             {/* SENTENCE 4 */}
             <div className="sentence4 absolute top-[200%] left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
               <span className="text-content -translate-x-[10%] opacity-0">
-                Reacting quickly.
+                I React fast.
               </span>
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-[200%] justify-center rounded-xl opacity-0 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
@@ -334,7 +337,7 @@ export default function Home() {
               </div>
               {/* <span className="text-content //translate-x-[10%] opacity-0"></span> */}
               <span className="text-content translate-x-[10%] opacity-0">
-                Routing smarter.
+                I go Next-level.
               </span>
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-[200%] rounded-xl opacity-0 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
