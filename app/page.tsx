@@ -195,18 +195,18 @@ export default function Home() {
 
   return (
     <div className="h-[200vh] bg-black px-8 text-white" ref={page}>
-      <section className="//pb-4 relative flex h-dvh flex-col" ref={header}>
+      <section className="relative flex h-dvh flex-col pb-4" ref={header}>
         <div className="w-full flex-1">
           <div
             className="flex size-full flex-col items-center justify-center space-y-6"
             ref={h1}
           >
-            <h1 className="font-hanken-grotesk mx-auto text-center text-4xl font-black text-white lg:max-w-6xl xl:text-6xl">
+            <h1 className="font-hanken-grotesk mx-auto text-center text-4xl font-black text-white lg:max-w-4xl xl:text-8xl">
               Building the web, one pixel at a time
             </h1>
             <p className="font-semibold">Witty comment about me</p>
             <button className="font-archivo bg-lime-400 px-3 py-2.5 font-semibold">
-              pill buton
+              I don't want to see a cool animation
             </button>
           </div>
         </div>
