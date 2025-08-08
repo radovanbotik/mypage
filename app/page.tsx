@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,6 +12,10 @@ import { React } from "@/public/images/techstack/react";
 import { Next } from "@/public/images/techstack/nextdotjs";
 import Hero from "./components/hero-section/hero";
 import StudioHeaderPattern from "./components/artifacts/pattern";
+import { Arrow18 } from "@/public/images/doodles/arrows/arrow18";
+import { Arrow32 } from "@/public/images/doodles/arrows/arrow32";
+import { Arrow3 } from "@/public/images/doodles/arrows/arrow3";
+import { ArrowDashed } from "@/public/images/doodles/arrows/arrow-dashed";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP);
@@ -22,6 +26,10 @@ export default function Home() {
   const header = useRef<HTMLDivElement | null>(null);
   const hero = useRef<HTMLDivElement | null>(null);
   const scrollUpAnimation = useRef<GSAPTimeline | null>(null);
+
+  const [tech, setTech] = useState<null | "js" | "ts" | "tw" | "rx" | "nx">(
+    null,
+  );
 
   useGSAP(
     () => {
@@ -118,7 +126,7 @@ export default function Home() {
             });
           },
         })
-        .to(grid, { gap: 0 }, "<")
+        .to(grid, { gap: 0, userSelect: "none" }, "<")
         //COLORCHANGE
         // .to(page.current, {
         //   backgroundColor: "white",
@@ -220,32 +228,53 @@ export default function Home() {
         className="relative flex h-dvh flex-col overflow-hidden px-8 pb-4"
         ref={header}
       >
-        <Hero ref={hero} />
+        <Hero ref={hero} tech={tech} />
 
         <div
-          className="flex w-full items-start justify-center gap-3 opacity-100 [&>*]:aspect-square [&>*]:w-full [&>*]:max-w-36"
+          className="group relative mx-auto flex w-fit items-start justify-center gap-3 opacity-100 [&>.icon1]:aspect-square [&>.icon1]:w-full [&>.icon1]:max-w-28"
           ref={grid1}
         >
-          <div className="icon1 animate-gradient-x //p-0.5 //bg-gradient-to-r //rounded-xl overflow-hidden from-[#0b1120] via-[#38bdf8] to-[#0ea5e9] will-change-transform">
+          <div
+            className="icon1 cursor-pointer overflow-hidden will-change-transform"
+            onClick={() => setTech("js")}
+          >
             <Javacript className="size-full rounded-lg border-2 border-black" />
           </div>
-          <div className="icon1 animate-gradient-x //p-0.5 //bg-gradient-to-r //rounded-xl overflow-hidden from-[#0b1120] via-[#38bdf8] to-[#0ea5e9] will-change-transform">
+          <div
+            className="icon1 cursor-pointer overflow-hidden will-change-transform"
+            onClick={() => setTech("ts")}
+          >
             <TypeScript className="size-full rounded-lg border-2 border-black" />
           </div>
-          <div className="icon1 animate-gradient-x //p-0.5 //bg-gradient-to-r //rounded-xl overflow-hidden from-[#0b1120] via-[#38bdf8] to-[#0ea5e9] will-change-transform">
+          <div
+            className="icon1 cursor-pointer overflow-hidden will-change-transform"
+            onClick={() => setTech("tw")}
+          >
             <Tailwind className="size-full rounded-lg border-2 border-black" />
           </div>
-          <div className="icon1 animate-gradient-x //p-0.5 //bg-gradient-to-r //rounded-xl overflow-hidden from-[#0b1120] via-[#38bdf8] to-[#0ea5e9] will-change-transform">
+          <div
+            className="icon1 cursor-pointer overflow-hidden will-change-transform"
+            onClick={() => setTech("rx")}
+          >
             <React className="size-full rounded-lg border-2 border-black" />
           </div>
-          <div className="icon1 animate-gradient-x //p-0.5 //bg-gradient-to-r //rounded-xl overflow-hidden from-[#0b1120] via-[#38bdf8] to-[#0ea5e9] will-change-transform">
+          <div
+            className="icon1 cursor-pointer overflow-hidden will-change-transform"
+            onClick={() => setTech("nx")}
+          >
             <Next className="size-full rounded-lg border-2 border-black" />
+          </div>
+          <div className="absolute -top-1/2 -left-4 -translate-x-full rotate-12 opacity-0 group-hover:opacity-100">
+            <div className="font-archivo text-2xl whitespace-nowrap">
+              These are clickable
+            </div>
+            <ArrowDashed className="//w-56 shrink-0" />
           </div>
         </div>
         <div className="font-hanken-grotesk absolute top-1/2 left-0 w-full -translate-y-1/2 font-black">
           <div className="relative mx-auto flex h-full w-fit justify-center opacity-100">
             {/* SENTENCE 1 */}
-            <div className="sentence1 absolute -top-full left-0 z-10 flex w-full items-center justify-center gap-1 text-5xl whitespace-nowrap select-none">
+            <div className="sentence1 absolute -top-full left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-5xl">
               <span className="text-content -translate-x-[10%] opacity-0">
                 Old faithful,
               </span>
@@ -259,7 +288,7 @@ export default function Home() {
               </span>
             </div>
             {/* SENTENCE 2 */}
-            <div className="sentence2 absolute top-0 left-0 z-10 flex w-full items-center justify-center gap-1 text-5xl whitespace-nowrap select-none">
+            <div className="sentence2 absolute top-0 left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-5xl">
               <span className="text-content -translate-x-[10%] opacity-0">
                 Typings matter.
               </span>
@@ -273,7 +302,7 @@ export default function Home() {
               </span>
             </div>
             {/* SENTENCE 3 */}
-            <div className="sentence3 absolute top-full left-0 z-10 flex w-full items-center justify-center gap-1 text-5xl whitespace-nowrap select-none">
+            <div className="sentence3 absolute top-full left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-5xl">
               <span className="text-content -translate-x-[10%] opacity-0">
                 No stylesheets,
               </span>
@@ -287,7 +316,7 @@ export default function Home() {
               </span>
             </div>
             {/* SENTENCE 4 */}
-            <div className="sentence4 absolute top-[200%] left-0 z-10 flex w-full items-center justify-center gap-1 text-5xl whitespace-nowrap select-none">
+            <div className="sentence4 absolute top-[200%] left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-5xl">
               <span className="text-content -translate-x-[10%] opacity-0">
                 Reacting quickly.
               </span>
@@ -315,25 +344,6 @@ export default function Home() {
             <div className="icon2 invsible aspect-square w-[60px] rounded-xl opacity-0 will-change-transform"></div>
           </div>
         </div>
-        {/* <svg
-          viewBox="0 0 1024 1024"
-          aria-hidden="true"
-          className="absolute top-1/2 left-1/2 -z-10 size-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]"
-        >
-          <circle
-            r={512}
-            cx={512}
-            cy={512}
-            fill="url(#827591b1-ce8c-4110-b064-7cb85a0b1217)"
-            fillOpacity="0.7"
-          />
-          <defs>
-            <radialGradient id="827591b1-ce8c-4110-b064-7cb85a0b1217">
-              <stop stopColor="#7775D6" />
-              <stop offset={1} stopColor="#E935C1" />
-            </radialGradient>
-          </defs>
-        </svg> */}
       </section>
     </div>
   );

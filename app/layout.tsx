@@ -3,6 +3,7 @@ import { Hanken_Grotesk, Archivo } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "./components/navigation/navbar";
 import StudioHeaderPattern from "./components/artifacts/pattern";
+import { FabMagnetic } from "./components/fab/Fab";
 
 const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function RootLayout({
         <Navbar />
         <StudioHeaderPattern className="absolute top-0 left-0 size-full text-white" />
         {children}
+        <FabMagnetic />
       </body>
     </html>
   );
