@@ -106,6 +106,7 @@ export default function Home() {
         )
         .to(iconsInSequence1, {
           width: 60,
+          // padding: 0,
           onUpdate: () => {
             // Recalculate each time the width has changed
             const newOffset =
@@ -225,23 +226,23 @@ export default function Home() {
           className="flex w-full items-start justify-center gap-3 opacity-100 [&>*]:aspect-square [&>*]:w-full [&>*]:max-w-36"
           ref={grid1}
         >
-          <div className="icon1 overflow-hidden rounded-xl object-cover will-change-transform">
-            <Javacript className="size-full" />
+          <div className="icon1 animate-gradient-x //p-0.5 //bg-gradient-to-r //rounded-xl overflow-hidden from-[#0b1120] via-[#38bdf8] to-[#0ea5e9] will-change-transform">
+            <Javacript className="size-full rounded-lg border-2 border-black" />
           </div>
-          <div className="icon1 overflow-hidden rounded-xl will-change-transform">
-            <TypeScript className="size-full" />
+          <div className="icon1 animate-gradient-x //p-0.5 //bg-gradient-to-r //rounded-xl overflow-hidden from-[#0b1120] via-[#38bdf8] to-[#0ea5e9] will-change-transform">
+            <TypeScript className="size-full rounded-lg border-2 border-black" />
           </div>
-          <div className="icon1 overflow-hidden rounded-xl will-change-transform">
-            <Tailwind className="size-full" />
+          <div className="icon1 animate-gradient-x //p-0.5 //bg-gradient-to-r //rounded-xl overflow-hidden from-[#0b1120] via-[#38bdf8] to-[#0ea5e9] will-change-transform">
+            <Tailwind className="size-full rounded-lg border-2 border-black" />
           </div>
-          <div className="icon1 overflow-hidden rounded-xl will-change-transform">
-            <React className="size-full" />
+          <div className="icon1 animate-gradient-x //p-0.5 //bg-gradient-to-r //rounded-xl overflow-hidden from-[#0b1120] via-[#38bdf8] to-[#0ea5e9] will-change-transform">
+            <React className="size-full rounded-lg border-2 border-black" />
           </div>
-          <div className="icon1 overflow-hidden rounded-xl will-change-transform">
-            <Next className="size-full" />
+          <div className="icon1 animate-gradient-x //p-0.5 //bg-gradient-to-r //rounded-xl overflow-hidden from-[#0b1120] via-[#38bdf8] to-[#0ea5e9] will-change-transform">
+            <Next className="size-full rounded-lg border-2 border-black" />
           </div>
         </div>
-        <div className="font-hanken-grotesk absolute top-1/2 w-full -translate-y-1/2 font-black">
+        <div className="font-hanken-grotesk absolute top-1/2 left-0 w-full -translate-y-1/2 font-black">
           <div className="relative mx-auto flex h-full w-fit justify-center opacity-100">
             {/* SENTENCE 1 */}
             <div className="sentence1 absolute -top-full left-0 z-10 flex w-full items-center justify-center gap-1 text-5xl whitespace-nowrap select-none">
