@@ -235,6 +235,8 @@ export default function Hero({ ref, tech }: Props) {
         );
       };
     },
+
+    //@ts-ignore
     { scope: ref },
   );
 
@@ -311,18 +313,18 @@ export default function Hero({ ref, tech }: Props) {
             : headlineSubheadline["default"].subheadline}
         </p>
 
-        <div className="mt-6 mb-6 flex items-center justify-center gap-x-6">
+        <div className="justify mt-6 mb-6 flex flex-col items-center gap-4 lg:flex-row">
           <Link
             href="#"
-            className="rounded-md bg-white px-3.5 py-2.5 text-sm/6 font-semibold text-gray-900 opacity-0 shadow-[0px_0px_8px_2px_#ffffff33] will-change-[transform,opacity] hover:bg-gray-100 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="inline-block w-full rounded-md bg-white px-3.5 py-2.5 text-sm/6 font-semibold whitespace-nowrap text-gray-900 opacity-0 shadow-[0px_0px_8px_2px_#ffffff33] will-change-[transform,opacity] hover:bg-gray-100 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white"
             ref={cta}
           >
-            {`<ContactForm />`}
+            {`Get in touch`}
           </Link>
 
           <Link
             href="#"
-            className="translate-y-[6px] px-3.5 py-2.5 text-sm/6 font-semibold text-white opacity-0"
+            className="inline-block w-full translate-y-[6px] px-3.5 py-2.5 text-sm/6 font-semibold whitespace-nowrap text-white opacity-0"
             ref={secondaryButton}
           >
             More Components{" "}

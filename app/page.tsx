@@ -211,8 +211,8 @@ export default function Home() {
       //     stagger: { each: 0.15, from: "end" },
       //   },
       // );
-
       return () => {
+        //@ts-ignore
         mainTimeline.current.kill();
       };
     },
@@ -245,7 +245,7 @@ export default function Home() {
       x: 0,
       y: 0,
       duration: 0.6,
-      ease: "elastic.out(1, 0.75)",
+      ease: "elastic.out(2, 0.75)",
       overwrite: "auto",
     });
   }
@@ -266,7 +266,7 @@ export default function Home() {
         {/* <Stats /> */}
 
         <div
-          className="group relative mx-auto flex w-fit items-start justify-center gap-3 opacity-100 [&>.icon1]:aspect-square [&>.icon1]:w-full [&>.icon1]:max-w-24"
+          className="group relative mx-auto flex w-fit items-start justify-center gap-1 opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-full [&>.icon1]:max-w-24"
           ref={grid1}
         >
           <div
