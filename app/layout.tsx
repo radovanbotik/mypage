@@ -34,7 +34,7 @@ export default function RootLayout({
       >
         {/* <StudioHeaderPattern className="absolute top-0 left-0 size-full text-white" /> */}
         <Navbar />
-        {/* <BackgroundGridRain
+        <BackgroundGridRain
           spacing={24}
           dotRadius={1}
           dotColor="rgba(255,255,255,0.09)"
@@ -44,7 +44,7 @@ export default function RootLayout({
           speedRange={[80, 260]}
           streakLength={160}
           zIndex={0}
-        /> */}
+        />
         {children}
       </body>
     </html>

@@ -258,7 +258,7 @@ export default function Home() {
       {/* <FloatingCodeArtifacts ref={artifacts} /> */}
 
       <section
-        className="//pt-40 //pb-4 relative flex h-dvh flex-col px-8"
+        className="//pt-40 relative flex h-dvh flex-col px-8 pb-4"
         ref={header}
       >
         {/* <Socials /> */}
