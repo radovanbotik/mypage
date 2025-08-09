@@ -3,7 +3,7 @@ import { Hanken_Grotesk, Archivo } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "./components/navigation/navbar";
 import StudioHeaderPattern from "./components/artifacts/pattern";
-import { Stats } from "./components/hero-section/stats";
+import BackgroundGridRain from "./components/artifacts/backgroundGrid";
 
 const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin"],
@@ -32,12 +32,20 @@ export default function RootLayout({
       <body
         className={`${hankenGrotesk.variable} ${archivo.variable} relative antialiased`}
       >
-        <StudioHeaderPattern className="absolute top-0 left-0 size-full text-white" />
-        <div className="//w-1/2 relative">
-          <Navbar />
-          {children}
-        </div>
-        {/* <Stats /> */}
+        {/* <StudioHeaderPattern className="absolute top-0 left-0 size-full text-white" /> */}
+        <Navbar />
+        <BackgroundGridRain
+          spacing={24}
+          dotRadius={1}
+          dotColor="rgba(255,255,255,0.09)"
+          streakColor="rgba(0, 255, 255, 0.65)" // tweak to brand
+          background="#0b0d10"
+          streakCount={8}
+          speedRange={[80, 260]}
+          streakLength={160}
+          zIndex={0}
+        />
+        {children}
       </body>
     </html>
   );

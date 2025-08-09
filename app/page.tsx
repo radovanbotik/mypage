@@ -10,9 +10,6 @@ import { Tailwind } from "@/public/images/techstack/tailwindcss";
 import { React } from "@/public/images/techstack/react";
 import { Next } from "@/public/images/techstack/nextdotjs";
 import Hero from "./components/hero-section/hero";
-import { ArrowDashed } from "@/public/images/doodles/arrows/arrow-dashed";
-import { Stats } from "./components/hero-section/stats";
-import { Socials } from "./components/hero-section/socials";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(useGSAP);
@@ -22,8 +19,19 @@ export default function Home() {
   const page = useRef<HTMLDivElement | null>(null);
   const header = useRef<HTMLDivElement | null>(null);
   const hero = useRef<HTMLDivElement | null>(null);
-  const arrow = useRef<HTMLDivElement | null>(null);
-  const scrollUpAnimation = useRef<GSAPTimeline | null>(null);
+  const mainTimeline = useRef<GSAPTimeline | null>(null);
+
+  const jsLarge = useRef<HTMLDivElement | null>(null);
+  const tsLarge = useRef<HTMLDivElement | null>(null);
+  const twLarge = useRef<HTMLDivElement | null>(null);
+  const nxLarge = useRef<HTMLDivElement | null>(null);
+  const rxLarge = useRef<HTMLDivElement | null>(null);
+
+  const sentence1span = useRef<HTMLDivElement | null>(null);
+  const sentence2span = useRef<HTMLDivElement | null>(null);
+  const sentence3span = useRef<HTMLDivElement | null>(null);
+  const sentence4span1 = useRef<HTMLDivElement | null>(null);
+  const sentence4span2 = useRef<HTMLDivElement | null>(null);
 
   const [tech, setTech] = useState<null | "js" | "ts" | "tw" | "rx" | "nx">(
     null,
@@ -32,36 +40,23 @@ export default function Home() {
   useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
-      const iconsInSequence1 = gsap.utils.toArray(".icon1") as HTMLDivElement[];
+
+      // --- DOM collections -----------------------------------------------------
       const iconsInSequence2 = gsap.utils.toArray(".icon2") as HTMLDivElement[];
       const iconsInSequence3 = gsap.utils.toArray(".icon3") as HTMLDivElement[];
-      const wordsInSentence0 = gsap.utils.toArray(
-        ".sentence0 .text-content",
-      ) as HTMLDivElement[];
-      const wordsInSentence1 = gsap.utils.toArray(
-        ".sentence1 .text-content",
-      ) as HTMLDivElement[];
-      const wordsInSentence2 = gsap.utils.toArray(
-        ".sentence2 .text-content",
-      ) as HTMLDivElement[];
-      const wordsInSentence3 = gsap.utils.toArray(
-        ".sentence3 .text-content",
-      ) as HTMLDivElement[];
-      const wordsInSentence4 = gsap.utils.toArray(
-        ".sentence4 .text-content",
-      ) as HTMLDivElement[];
 
+      // --- Geometry / baseline measurements -----------------------------------
       const grid = grid1.current as HTMLDivElement;
       const originalOffset =
         -window.innerHeight / 2 + grid.getBoundingClientRect().height / 2;
 
-      // Timeline setup
-      scrollUpAnimation.current = gsap
+      // --- Timeline (order preserved verbatim) --------------------------------
+      mainTimeline.current = gsap
         .timeline({
-          defaults: {
-            ease: "circ.inOut",
-          },
+          defaults: { ease: "circ.inOut" },
         })
+
+        // Pre-position icon3s relative to icon2s (x only)
         .set(iconsInSequence3[0], {
           x:
             iconsInSequence2[0].getBoundingClientRect().left -
@@ -87,147 +82,183 @@ export default function Home() {
             iconsInSequence2[4].getBoundingClientRect().left -
             iconsInSequence3[4].getBoundingClientRect().left,
         })
-        .to(iconsInSequence1, {
-          y: originalOffset,
-          stagger: { each: 0.15, from: "start" },
+        .set(page.current, {
+          overflowY: "auto",
+          height: "auto",
         })
 
+        // Lift icon1s into place
         .to(
-          header.current,
+          [
+            jsLarge.current,
+            tsLarge.current,
+            twLarge.current,
+            nxLarge.current,
+            rxLarge.current,
+          ],
           {
-            paddingBottom: 0,
+            y: originalOffset,
+            stagger: { each: 0.15, from: "start" },
           },
-          "<",
         )
-        .to(
-          hero.current,
-          {
-            opacity: 0,
-            yPercent: -25,
-          },
-          "<",
-        )
+
+        // Header + hero adjustments (synced)
+        .to(header.current, { paddingBottom: 0 }, "<")
+        .to(hero.current, { opacity: 0, yPercent: -25 }, "<")
+
+        // Disable interactions while animating
         .set(grid, {
           userSelect: "none",
           pointerEvents: "none",
         })
-        .set(arrow.current, {
-          userSelect: "none",
-          pointerEvents: "none",
-          visibility: "hidden",
-        })
-        .to(iconsInSequence1, {
-          width: 60,
-          // padding: 0,
-          onUpdate: () => {
-            // Recalculate each time the width has changed
-            const newOffset =
-              -window.innerHeight / 2 + grid.getBoundingClientRect().height / 2;
-
-            // Apply updated y value directly
-            iconsInSequence1.forEach((el) => {
-              gsap.set(el, { y: newOffset });
-            });
+        // Resize icon1s and keep vertical offset updated
+        .to(
+          [
+            jsLarge.current,
+            tsLarge.current,
+            twLarge.current,
+            nxLarge.current,
+            rxLarge.current,
+          ],
+          {
+            width: 60,
+            onUpdate: () => {
+              const newOffset =
+                -window.innerHeight / 2 +
+                grid.getBoundingClientRect().height / 2;
+              [
+                jsLarge.current,
+                tsLarge.current,
+                twLarge.current,
+                nxLarge.current,
+                rxLarge.current,
+              ].forEach((el) => {
+                gsap.set(el, { y: newOffset });
+              });
+            },
           },
-        })
+        )
         .to(grid, { gap: 0, userSelect: "none" }, "<")
-        //COLORCHANGE
-        // .to(page.current, {
-        //   backgroundColor: "white",
-        //   color: "black",
-        // })
-        .to(iconsInSequence1, { width: 60 })
-        .set(iconsInSequence1, { opacity: 0 })
-        // .set(iconsInSequence2, { opacity: 1 }, "<")
+
+        // Keep original duplicate width tween + visibility swaps
+        .to(
+          [
+            jsLarge.current,
+            tsLarge.current,
+            twLarge.current,
+            nxLarge.current,
+            rxLarge.current,
+          ],
+          { width: 60 },
+        )
+        .set(
+          [
+            jsLarge.current,
+            tsLarge.current,
+            twLarge.current,
+            nxLarge.current,
+            rxLarge.current,
+          ],
+          { opacity: 0 },
+        )
         .set(iconsInSequence3, { opacity: 1 }, "<")
-        //ICON1
-        .set(
-          iconsInSequence2[0],
-          {
-            opacity: 0,
-          },
-          "<",
-        )
-        .to(iconsInSequence3[0], {
-          yPercent: -100,
-        })
-        .set(wordsInSentence0, { opacity: 1 })
 
-        .to(iconsInSequence3[0], {
-          x: 0,
-        })
-        .to(wordsInSentence1[0], {
-          opacity: 1,
-        })
-        .to(
-          wordsInSentence1,
-          {
-            x: 0,
-          },
-          "<",
-        )
-        .to(iconsInSequence3[0], {
-          x: 0,
-        })
-        //ICON2
-        .set(
-          iconsInSequence2[1],
-          {
-            opacity: 0,
-          },
-          "<",
-        )
+        // --- ICON 1 ------------------------------------------------------------
+        .set(iconsInSequence2[0], { opacity: 0 }, "<")
+        .to(iconsInSequence3[0], { yPercent: -100 })
+        .to(iconsInSequence3[0], { x: 0 })
+        .to(sentence1span.current, { opacity: 1, x: 0 })
+        .to(iconsInSequence3[0], { x: 0 })
 
-        .to(iconsInSequence3[1], {
-          x: 0,
-        })
-        .to(
-          wordsInSentence1[1],
-          {
-            opacity: 1,
-          },
-          "<",
-        )
+        // --- ICON 2+ -----------------------------------------------------------
+        .set(iconsInSequence2[1], { opacity: 0 }, "<")
+        .to(iconsInSequence3[1], { x: 0 })
         .to(iconsInSequence3[2], { y: 0 }, "<")
         .set(iconsInSequence2[2], { opacity: 0 }, "<")
         .to([iconsInSequence3[3], iconsInSequence3[4]], { y: 0 }, "<")
         .set([iconsInSequence2[3], iconsInSequence2[4]], { opacity: 0 }, "<")
-        .to(
-          wordsInSentence2[0],
-          {
-            opacity: 1,
-            x: 0,
-          },
-          "<",
-        )
-        .to(
-          wordsInSentence2[1],
-          {
-            opacity: 1,
-          },
-          "<",
-        )
+        .to(sentence2span.current, { opacity: 1, x: 0 })
         .to(iconsInSequence3[2], { x: 0 })
-        .to(wordsInSentence3, { opacity: 1, x: 0 }, "<")
+        .to(sentence3span.current, { opacity: 1, x: 0 }, "<")
         .to([iconsInSequence3[3], iconsInSequence3[4]], { x: 0 })
-        .to(wordsInSentence4, { x: 0, opacity: 1 });
+        .to([sentence4span1.current, sentence4span2.current], {
+          x: 0,
+          opacity: 1,
+        });
 
+      // --- ScrollTrigger -------------------------------------------------------
       ScrollTrigger.create({
         trigger: header.current,
         pin: header.current,
         pinSpacing: true,
-        scrub: 1,
-        animation: scrollUpAnimation.current,
+        scrub: 2,
+        animation: mainTimeline.current,
         // markers: true,
       });
+
+      // --- Intro -----------------------------------------------------
+      // gsap.to(
+      //   [
+      //     jsLarge.current,
+      //     tsLarge.current,
+      //     twLarge.current,
+      //     nxLarge.current,
+      //     rxLarge.current,
+      //   ],
+      //   {
+      //     y: 0,
+      //     opacity: 100,
+      //     stagger: { each: 0.15, from: "end" },
+      //   },
+      // );
+
+      return () => {
+        mainTimeline.current.kill();
+      };
     },
     { scope: page },
   );
 
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const { clientX: mouseX, clientY: mouseY } = e;
+    const {
+      height: elementHeight,
+      width: elementWidth,
+      top: elementTop,
+      left: elementLeft,
+    } = e.currentTarget.getBoundingClientRect();
+
+    const moveElementXto = (mouseX - (elementLeft + elementWidth / 2)) / 2;
+    const moveElementYto = (mouseY - (elementTop + elementHeight / 2)) / 2;
+
+    gsap.to(e.currentTarget, {
+      x: moveElementXto,
+      y: moveElementYto,
+      duration: 0.6,
+      ease: "elastic.out(1, 0.75)",
+      overwrite: "auto",
+    });
+  }
+
+  function handleMouseLeave(e: React.MouseEvent<HTMLDivElement>) {
+    gsap.to(e.currentTarget, {
+      x: 0,
+      y: 0,
+      duration: 0.6,
+      ease: "elastic.out(1, 0.75)",
+      overwrite: "auto",
+    });
+  }
+
   return (
-    <div className="//bg-black relative text-white" ref={page}>
+    <div
+      className="//bg-black relative h-dvh overflow-y-hidden text-white"
+      ref={page}
+    >
+      {/* <FloatingCodeArtifacts ref={artifacts} /> */}
+
       <section
-        className="relative flex h-dvh flex-col overflow-hidden px-8 pb-4"
+        className="//pt-40 relative flex h-dvh flex-col px-8 pb-4"
         ref={header}
       >
         {/* <Socials /> */}
@@ -239,36 +270,53 @@ export default function Home() {
           ref={grid1}
         >
           <div
-            className="icon1 cursor-pointer will-change-transform"
+            className="icon1 cursor-pointer will-change-auto"
             onClick={() => setTech("js")}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            ref={jsLarge}
           >
             <Javacript className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 cursor-pointer will-change-transform"
+            className="icon1 cursor-pointer will-change-auto"
             onClick={() => setTech("ts")}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            ref={tsLarge}
           >
             <TypeScript className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 cursor-pointer will-change-transform"
+            className="icon1 cursor-pointer will-change-auto"
             onClick={() => setTech("tw")}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            ref={twLarge}
           >
             <Tailwind className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 cursor-pointer will-change-transform"
-            onClick={() => setTech("rx")}
-          >
-            <React className="size-full rounded-lg border-2 border-black" />
-          </div>
-          <div
-            className="icon1 cursor-pointer will-change-transform"
+            className="icon1 cursor-pointer will-change-auto"
             onClick={() => setTech("nx")}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            ref={nxLarge}
           >
             <Next className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
+            className="icon1 cursor-pointer will-change-auto"
+            onClick={() => setTech("rx")}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            ref={rxLarge}
+          >
+            <React className="size-full rounded-lg border-2 border-black" />
+          </div>
+        </div>
+
+        {/* <div
             className="arrow absolute -top-1/2 -left-4 -translate-x-full rotate-12 opacity-0 group-hover:opacity-100"
             ref={arrow}
           >
@@ -276,18 +324,15 @@ export default function Home() {
               {!tech ? "These are clickable" : "Keep going..."}
             </div>
             <ArrowDashed className="//w-56 shrink-0" />
-          </div>
-        </div>
+          </div> */}
         {/* <section className="h-screen">yo</section> */}
         <div className="font-archivo absolute top-1/2 left-0 w-full -translate-y-1/2 font-bold tracking-tight">
           <div className="relative mx-auto flex h-full w-fit justify-center opacity-100">
-            {/* SENTENCE 0 */}
-            {/* <div className="sentence0 absolute -top-[300%] left-0 z-10 mx-auto flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-2xl">
-              <span className="text-content opacity-0">My Stack:</span>
-            </div> */}
-            {/* SENTENCE 1 */}
             <div className="sentence1 absolute -top-full left-0 z-10 mx-auto flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
-              <span className="text-content -translate-x-[10%] opacity-0">
+              <span
+                className="text-content -translate-x-[10%] opacity-0"
+                ref={sentence1span}
+              >
                 I tame JavaScript.
               </span>
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] translate-y-full opacity-0 will-change-transform">
@@ -295,55 +340,57 @@ export default function Home() {
                   <Javacript className="size-full" />
                 </div>
               </div>
-              <span className="text-content -translate-x-[10%] opacity-0">
-                It fights back.
-              </span>
             </div>
             {/* SENTENCE 2 */}
             <div className="sentence2 absolute top-0 left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
-              <span className="text-content -translate-x-[10%] opacity-0">
-                TypeScript steps in.
-              </span>
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] rounded-xl opacity-0 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
                   <TypeScript className="size-full" />
                 </div>
               </div>
-              <span className="text-content opacity-0">Bugs back off.</span>
+              <span className="text-content opacity-0" ref={sentence2span}>
+                TypeScript knows I’m lying.
+              </span>
             </div>
             {/* SENTENCE 3 */}
             <div className="sentence3 absolute top-full left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
-              <span className="text-content -translate-x-[10%] opacity-0">
-                I wrangle classes.
+              <span
+                className="text-content -translate-x-[10%] opacity-0"
+                ref={sentence3span}
+              >
+                I leave CSS on read with Tailwind.
               </span>
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-full rounded-xl opacity-0 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
                   <Tailwind className="size-full" />
                 </div>
               </div>
-              <span className="text-content translate-x-[10%] opacity-0">
-                UIs behave.
-              </span>
             </div>
             {/* SENTENCE 4 */}
             <div className="sentence4 absolute top-[200%] left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
-              <span className="text-content -translate-x-[10%] opacity-0">
-                I React fast.
+              <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-[200%] rounded-xl opacity-0 will-change-transform">
+                <div className="overflow-hidden rounded-md border-2 border-black">
+                  <Next className="size-full" />
+                </div>
+              </div>
+              <span
+                className="text-content -translate-x-[10%] opacity-0"
+                ref={sentence4span1}
+              >
+                Next.js routes.
               </span>
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-[200%] justify-center rounded-xl opacity-0 will-change-transform">
                 <div className="overflow-hidden rounded-md border-2 border-black">
                   <React className="size-full" />
                 </div>
               </div>
-              {/* <span className="text-content //translate-x-[10%] opacity-0"></span> */}
-              <span className="text-content translate-x-[10%] opacity-0">
-                I go Next-level.
+
+              <span
+                className="text-content translate-x-[10%] opacity-0"
+                ref={sentence4span2}
+              >
+                React renders.
               </span>
-              <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-[200%] rounded-xl opacity-0 will-change-transform">
-                <div className="overflow-hidden rounded-md border-2 border-black">
-                  <Next className="size-full" />
-                </div>
-              </div>
             </div>
 
             {/* ICONS */}
@@ -355,7 +402,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="h-screen">yo</section>
     </div>
   );
 }

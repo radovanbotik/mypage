@@ -1,6 +1,7 @@
 "use client";
+import gsap from "gsap";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Dialog,
   DialogBackdrop,
@@ -10,15 +11,42 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/app/lib/cn";
+import { useGSAP } from "@gsap/react";
 
 export function Navbar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  const navbar = useRef<HTMLDivElement | null>(null);
+
   const pathname = usePathname();
   const isActive = (href: string) => href === pathname;
 
+  useGSAP(
+    () => {
+      // Start blurred & slightly raised
+      gsap.set(navbar.current, {
+        y: -12,
+        opacity: 0,
+        filter: "blur(8px)",
+      });
+
+      // Animate into view with blur removal
+      gsap.to(navbar.current, {
+        y: 0,
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 0.45,
+        ease: "power3.out",
+      });
+    },
+    { scope: navbar },
+  );
+
   return (
-    <div className="//bg-white fixed top-4 left-0 z-40 flex w-full items-center px-4 py-4 text-white sm:px-6">
+    <div
+      className="fixed top-4 left-0 z-40 flex w-full -translate-y-3 items-center px-4 py-4 text-white opacity-0 sm:px-6"
+      ref={navbar}
+    >
       {/* <button
         type="button"
         onClick={() => setSidebarOpen(true)}
@@ -38,7 +66,7 @@ export function Navbar() {
         >
           {`init()`}
         </Link>
-        <Link
+        {/* <Link
           href="/blog"
           className={cn(
             "block px-3 py-2 text-white transition duration-300 hover:[text-shadow:0_0_8px_#22d3ee]",
@@ -46,7 +74,7 @@ export function Navbar() {
           )}
         >
           {`<Blog />`}
-        </Link>
+        </Link> */}
         <Link
           href="/readme"
           className={cn(
