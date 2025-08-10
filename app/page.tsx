@@ -289,11 +289,11 @@ export default function Home() {
         {/* <Hero ref={hero} tech={tech} /> */}
 
         <div
-          className="group //[&>.icon1]:w-full //pb-4 //relative absolute inset-x-0 bottom-0 left-0 mx-auto flex w-full justify-center gap-1 overflow-x-clip opacity-100 lg:gap-3 [&>.icon1]:h-30 [&>.icon1]:w-30"
+          className="group //[&>.icon1]:w-full //pb-4 //relative //flex //absolute //inset-x-0 bottom-0 left-0 mx-auto justify-center gap-1 overflow-x-clip opacity-100 lg:gap-3 [&>.icon1]:h-30 [&>.icon1]:w-30"
           ref={techstack}
         >
           <div
-            className="icon1 cursor-pointer will-change-auto"
+            className="icon1 inline-block cursor-pointer will-change-auto"
             onClick={() => setTech("js")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
@@ -302,7 +302,7 @@ export default function Home() {
             <Javacript className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 //translate-y-2.5 //opacity-0 cursor-pointer will-change-auto"
+            className="icon1 inline-block cursor-pointer will-change-auto"
             onClick={() => setTech("ts")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
@@ -311,7 +311,7 @@ export default function Home() {
             <TypeScript className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 //translate-y-2.5 //opacity-0 cursor-pointer will-change-auto"
+            className="icon1 inline-block cursor-pointer will-change-auto"
             onClick={() => setTech("tw")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
@@ -320,7 +320,7 @@ export default function Home() {
             <Tailwind className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 //translate-y-2.5 //opacity-0 cursor-pointer will-change-auto"
+            className="icon1 inline-block cursor-pointer will-change-auto"
             onClick={() => setTech("nx")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
@@ -329,7 +329,7 @@ export default function Home() {
             <Next className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 //translate-y-2.5 //opacity-0 cursor-pointer will-change-auto"
+            className="icon1 inline-block cursor-pointer will-change-auto"
             onClick={() => setTech("rx")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
