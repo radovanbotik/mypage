@@ -281,61 +281,60 @@ export default function Home() {
 
   return (
     <div className="relative text-white" ref={page}>
-      <section
-        className="relative flex h-screen min-h-svh flex-col justify-between"
-        ref={section1}
-      >
-        <div className="flex-1"></div>
-        {/* <Hero ref={hero} tech={tech} /> */}
+      <section className="h-screen min-h-svh" ref={section1}>
+        <div className="flex h-full w-full flex-col justify-between">
+          <div className="flex-1"></div>
+          {/* <Hero ref={hero} tech={tech} /> */}
 
-        <div
-          className="group //[&>.icon1]:w-full //pb-4 //relative //flex //absolute //inset-x-0 bottom-0 left-0 mx-auto justify-center gap-1 overflow-x-clip opacity-100 lg:gap-3 [&>.icon1]:h-14 [&>.icon1]:w-14"
-          ref={techstack}
-        >
           <div
-            className="icon1 inline-block cursor-pointer will-change-auto"
-            onClick={() => setTech("js")}
-            // onMouseMove={handleMouseMove}
-            // onMouseLeave={handleMouseLeave}
-            ref={jsLarge}
+            className="group //[&>.icon1]:w-full //pb-4 //relative //flex //absolute //inset-x-0 bottom-0 left-0 mx-auto justify-center gap-1 overflow-x-clip opacity-100 lg:gap-3 [&>.icon1]:h-14 [&>.icon1]:w-14"
+            ref={techstack}
           >
-            <Javacript className="size-full rounded-lg border-2 border-black" />
-          </div>
-          <div
-            className="icon1 inline-block cursor-pointer will-change-auto"
-            onClick={() => setTech("ts")}
-            // onMouseMove={handleMouseMove}
-            // onMouseLeave={handleMouseLeave}
-            ref={tsLarge}
-          >
-            <TypeScript className="size-full rounded-lg border-2 border-black" />
-          </div>
-          <div
-            className="icon1 inline-block cursor-pointer will-change-auto"
-            onClick={() => setTech("tw")}
-            // onMouseMove={handleMouseMove}
-            // onMouseLeave={handleMouseLeave}
-            ref={twLarge}
-          >
-            <Tailwind className="size-full rounded-lg border-2 border-black" />
-          </div>
-          <div
-            className="icon1 inline-block cursor-pointer will-change-auto"
-            onClick={() => setTech("nx")}
-            // onMouseMove={handleMouseMove}
-            // onMouseLeave={handleMouseLeave}
-            ref={nxLarge}
-          >
-            <Next className="size-full rounded-lg border-2 border-black" />
-          </div>
-          <div
-            className="icon1 inline-block cursor-pointer will-change-auto"
-            onClick={() => setTech("rx")}
-            // onMouseMove={handleMouseMove}
-            // onMouseLeave={handleMouseLeave}
-            ref={rxLarge}
-          >
-            <React className="size-full rounded-lg border-2 border-black" />
+            <div
+              className="icon1 inline-block cursor-pointer will-change-auto"
+              onClick={() => setTech("js")}
+              // onMouseMove={handleMouseMove}
+              // onMouseLeave={handleMouseLeave}
+              ref={jsLarge}
+            >
+              <Javacript className="size-full rounded-lg border-2 border-black" />
+            </div>
+            <div
+              className="icon1 inline-block cursor-pointer will-change-auto"
+              onClick={() => setTech("ts")}
+              // onMouseMove={handleMouseMove}
+              // onMouseLeave={handleMouseLeave}
+              ref={tsLarge}
+            >
+              <TypeScript className="size-full rounded-lg border-2 border-black" />
+            </div>
+            <div
+              className="icon1 inline-block cursor-pointer will-change-auto"
+              onClick={() => setTech("tw")}
+              // onMouseMove={handleMouseMove}
+              // onMouseLeave={handleMouseLeave}
+              ref={twLarge}
+            >
+              <Tailwind className="size-full rounded-lg border-2 border-black" />
+            </div>
+            <div
+              className="icon1 inline-block cursor-pointer will-change-auto"
+              onClick={() => setTech("nx")}
+              // onMouseMove={handleMouseMove}
+              // onMouseLeave={handleMouseLeave}
+              ref={nxLarge}
+            >
+              <Next className="size-full rounded-lg border-2 border-black" />
+            </div>
+            <div
+              className="icon1 inline-block cursor-pointer will-change-auto"
+              onClick={() => setTech("rx")}
+              // onMouseMove={handleMouseMove}
+              // onMouseLeave={handleMouseLeave}
+              ref={rxLarge}
+            >
+              <React className="size-full rounded-lg border-2 border-black" />
+            </div>
           </div>
         </div>
       </section>
