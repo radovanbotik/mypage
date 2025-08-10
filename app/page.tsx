@@ -40,9 +40,10 @@ export default function Home() {
   useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
+      ScrollTrigger.config({ ignoreMobileResize: true });
 
-      const onVVResize = () => ScrollTrigger.refresh();
-      window.visualViewport?.addEventListener("resize", onVVResize);
+      // const onVVResize = () => ScrollTrigger.refresh();
+      // window.visualViewport?.addEventListener("resize", onVVResize);
       // gsap.to(
       //   [
       //     jsLarge.current,
@@ -125,11 +126,11 @@ export default function Home() {
           },
           "<",
         )
-        .to(
-          techstack.current,
-          { gap: 0, paddingBottom: 0, userSelect: "none" },
-          "<",
-        )
+        // .to(
+        //   techstack.current,
+        //   { gap: 0, paddingBottom: 0, userSelect: "none" },
+        //   "<",
+        // )
         .to(
           [
             jsLarge.current,
@@ -210,7 +211,6 @@ export default function Home() {
       const section1TS = ScrollTrigger.create({
         trigger: section2.current,
         pin: section1.current,
-        pinType: "transform",
         pinSpacing: false,
         anticipatePin: 1,
         start: "top bottom", // section2 enters the viewport from the bottom
@@ -224,7 +224,6 @@ export default function Home() {
       const section2TS = ScrollTrigger.create({
         trigger: section3.current,
         pin: section2.current,
-        pinType: "transform",
         pinSpacing: false,
         anticipatePin: 1,
         start: "top bottom", // section2 enters the viewport from the bottom
@@ -237,7 +236,7 @@ export default function Home() {
       // }
 
       return () => {
-        window.visualViewport?.removeEventListener("resize", onVVResize);
+        // window.visualViewport?.removeEventListener("resize", onVVResize);
         section1TL.current?.kill();
         section2TL.current?.kill();
       };
@@ -279,20 +278,17 @@ export default function Home() {
   return (
     <div className="relative text-white" ref={page}>
       <section
-        className="relative flex min-h-svh flex-col justify-between"
+        className="relative flex h-screen min-h-svh flex-col justify-between pt-22 pb-8 lg:pt-40"
         ref={section1}
       >
         <Hero ref={hero} tech={tech} />
 
         <div
-          className="group relative mx-auto mt-auto flex w-fit gap-1 overflow-x-clip pb-4 opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-full [&>.icon1]:max-w-20"
-          // style={{
-          //   paddingBottom: `max(env(safe-area-inset-bottom, 0px), 12px)`,
-          // }}
+          className="group //[&>.icon1]:w-full relative mx-auto flex w-full justify-center gap-1 overflow-x-clip opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-30"
           ref={techstack}
         >
           <div
-            className="icon1 //translate-y-2.5 //opacity-0 cursor-pointer will-change-auto"
+            className="icon1 cursor-pointer will-change-auto"
             onClick={() => setTech("js")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
@@ -338,7 +334,10 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="relative flex min-h-svh flex-col" ref={section2}>
+      <section
+        className="relative flex h-screen min-h-svh flex-col"
+        ref={section2}
+      >
         <div className="font-archivo absolute top-1/2 left-0 w-full -translate-y-1/2 overflow-x-clip font-bold tracking-tight">
           <div className="relative mx-auto flex h-full w-full justify-center overflow-x-clip opacity-100">
             {/* SENTENCE 1 */}
@@ -406,7 +405,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="min-h-svh" ref={section3}></section>
+      <section className="h-screen min-h-svh" ref={section3}></section>
     </div>
   );
 }
