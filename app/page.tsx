@@ -282,14 +282,14 @@ export default function Home() {
   return (
     <div className="relative text-white" ref={page}>
       <section className="flex h-svh items-end justify-center" ref={section1}>
-        <div className="//w-fit //mx-auto mt-auto">
+        <div className="//w-fit //mx-auto //mt-auto">
           {/* <div
             className="icon1 //will-change-auto inline-block cursor-pointer"
         
           >
             <Javacript className="size-full h-16 w-16 rounded-lg border-2 border-black" />
           </div> */}
-          <div className="size-16 bg-blue-400"></div>
+          <div className="size-16 bg-amber-400"></div>
         </div>
       </section>
 
