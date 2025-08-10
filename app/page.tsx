@@ -285,7 +285,8 @@ export default function Home() {
         className="relative flex h-screen min-h-svh flex-col justify-between"
         ref={section1}
       >
-        <Hero ref={hero} tech={tech} />
+        <div className="flex-1"></div>
+        {/* <Hero ref={hero} tech={tech} /> */}
 
         <div
           className="group //[&>.icon1]:w-full //pb-4 //relative absolute inset-x-0 bottom-0 left-0 mx-auto flex w-full justify-center gap-1 overflow-x-clip opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-30"
