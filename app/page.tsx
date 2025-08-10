@@ -12,7 +12,7 @@ import { Next } from "@/public/images/techstack/nextdotjs";
 import Hero from "./components/hero-section/hero";
 
 export default function Home() {
-  const grid1 = useRef<HTMLDivElement | null>(null);
+  const techstack = useRef<HTMLDivElement | null>(null);
   const page = useRef<HTMLDivElement | null>(null);
   const hero = useRef<HTMLDivElement | null>(null);
   const section1TL = useRef<GSAPTimeline | null>(null);
@@ -64,9 +64,9 @@ export default function Home() {
       const iconsInSequence3 = gsap.utils.toArray(".icon3") as HTMLDivElement[];
 
       // --- Geometry / baseline measurements -----------------------------------
-      const grid = grid1.current as HTMLDivElement;
       const originalOffset =
-        -window.innerHeight / 2 + grid.getBoundingClientRect().height / 2;
+        -window.innerHeight / 2 +
+        techstack.current.getBoundingClientRect().height / 2;
 
       // --- Intro -----------------------------------------------------
 
@@ -78,7 +78,6 @@ export default function Home() {
         // Header + hero adjustments (synced)
         // .to(section1.current, { paddingBottom: 0 }, "<")
         .to(hero.current, { opacity: 0, y: -20 })
-        // Lift icon1s into place
         .to(
           [
             jsLarge.current,
@@ -91,16 +90,11 @@ export default function Home() {
             y: originalOffset,
             stagger: { each: 0.15, from: "start" },
           },
-          "+=0.1",
         )
-        .set(grid, {
+        .set(techstack.current, {
           userSelect: "none",
           pointerEvents: "none",
         })
-
-        // Disable interactions while animating
-
-        // Resize icon1s and keep vertical offset updated
         .to(
           [
             jsLarge.current,
@@ -114,7 +108,7 @@ export default function Home() {
             onUpdate: () => {
               const newOffset =
                 -window.innerHeight / 2 +
-                grid.getBoundingClientRect().height / 2;
+                techstack.current.getBoundingClientRect().height / 2;
               [
                 jsLarge.current,
                 tsLarge.current,
@@ -128,7 +122,11 @@ export default function Home() {
           },
           "<",
         )
-        // .to(grid, { gap: 0, paddingBottom: 0, userSelect: "none" }, "<")
+        .to(
+          techstack.current,
+          { gap: 0, paddingBottom: 0, userSelect: "none" },
+          "<",
+        )
         .to(
           [
             jsLarge.current,
@@ -277,14 +275,14 @@ export default function Home() {
   return (
     <div className="//overflow-x-clip relative text-white" ref={page}>
       <section
-        className="//pb-4 //px-8 relative flex h-dvh flex-col"
+        className="relative flex h-dvh flex-col justify-between"
         ref={section1}
       >
         <Hero ref={hero} tech={tech} />
 
         <div
-          className="group relative mx-auto mt-auto flex w-full items-start justify-center gap-1 self-end overflow-x-clip pb-4 opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-full [&>.icon1]:max-w-20"
-          ref={grid1}
+          className="group relative mx-auto flex w-fit gap-1 overflow-x-clip pb-4 opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-full [&>.icon1]:max-w-20"
+          ref={techstack}
         >
           <div
             className="icon1 //translate-y-2.5 //opacity-0 cursor-pointer will-change-auto"
