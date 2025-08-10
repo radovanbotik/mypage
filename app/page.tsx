@@ -40,201 +40,197 @@ export default function Home() {
   useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
-      gsap.to(
-        [
-          jsLarge.current,
-          tsLarge.current,
-          twLarge.current,
-          nxLarge.current,
-          rxLarge.current,
-        ],
-        {
-          y: 0,
+      // gsap.to(
+      //   [
+      //     jsLarge.current,
+      //     tsLarge.current,
+      //     twLarge.current,
+      //     nxLarge.current,
+      //     rxLarge.current,
+      //   ],
+      //   {
+      //     y: 0,
+      //     opacity: 1,
+      //     stagger: { each: 0.15, from: "end" },
+      //     onComplete: initST,
+      //   },
+      // );
+
+      // function initST() {
+      //   if ((initST as any)._done) return;
+      //   (initST as any)._done = true;
+      // --- DOM collections -----------------------------------------------------
+      const iconsInSequence2 = gsap.utils.toArray(".icon2") as HTMLDivElement[];
+      const iconsInSequence3 = gsap.utils.toArray(".icon3") as HTMLDivElement[];
+
+      // --- Geometry / baseline measurements -----------------------------------
+      const grid = grid1.current as HTMLDivElement;
+      const originalOffset =
+        -window.innerHeight / 2 + grid.getBoundingClientRect().height / 2;
+
+      // --- Intro -----------------------------------------------------
+
+      // --- Timeline (order preserved verbatim) --------------------------------
+      section1TL.current = gsap
+        .timeline({
+          defaults: { ease: "circ.inOut" },
+        })
+
+        // Lift icon1s into place
+        .to(
+          [
+            jsLarge.current,
+            tsLarge.current,
+            twLarge.current,
+            nxLarge.current,
+            rxLarge.current,
+          ],
+          {
+            y: originalOffset,
+            stagger: { each: 0.15, from: "start" },
+          },
+        )
+        .set(grid, {
+          userSelect: "none",
+          pointerEvents: "none",
+        })
+        // Header + hero adjustments (synced)
+        // .to(section1.current, { paddingBottom: 0 }, "<")
+        .to(hero.current, { opacity: 0, yPercent: -25 }, "<")
+
+        // Disable interactions while animating
+
+        // Resize icon1s and keep vertical offset updated
+        .to(
+          [
+            jsLarge.current,
+            tsLarge.current,
+            twLarge.current,
+            nxLarge.current,
+            rxLarge.current,
+          ],
+          {
+            width: 60,
+            onUpdate: () => {
+              const newOffset =
+                -window.innerHeight / 2 +
+                grid.getBoundingClientRect().height / 2;
+              [
+                jsLarge.current,
+                tsLarge.current,
+                twLarge.current,
+                nxLarge.current,
+                rxLarge.current,
+              ].forEach((el) => {
+                gsap.set(el, { y: newOffset });
+              });
+            },
+          },
+        )
+        .to(grid, { gap: 0, paddingBottom: 0, userSelect: "none" }, "<")
+        .to(
+          [
+            jsLarge.current,
+            tsLarge.current,
+            twLarge.current,
+            nxLarge.current,
+            rxLarge.current,
+          ],
+          { width: 60 },
+        )
+        .set(
+          [
+            jsLarge.current,
+            tsLarge.current,
+            twLarge.current,
+            nxLarge.current,
+            rxLarge.current,
+          ],
+          { opacity: 0 },
+        )
+        .set(iconsInSequence3, { opacity: 1 });
+
+      section2TL.current = gsap
+        .timeline({
+          defaults: { ease: "circ.inOut" },
+        })
+        // Pre-position icon3s relative to icon2s (x only)
+        .set(iconsInSequence3[0], {
+          x:
+            iconsInSequence2[0].getBoundingClientRect().left -
+            iconsInSequence3[0].getBoundingClientRect().left,
+        })
+        .set(iconsInSequence3[1], {
+          x:
+            iconsInSequence2[1].getBoundingClientRect().left -
+            iconsInSequence3[1].getBoundingClientRect().left,
+        })
+        .set(iconsInSequence3[2], {
+          x:
+            iconsInSequence2[2].getBoundingClientRect().left -
+            iconsInSequence3[2].getBoundingClientRect().left,
+        })
+        .set(iconsInSequence3[3], {
+          x:
+            iconsInSequence2[3].getBoundingClientRect().left -
+            iconsInSequence3[3].getBoundingClientRect().left,
+        })
+        .set(iconsInSequence3[4], {
+          x:
+            iconsInSequence2[4].getBoundingClientRect().left -
+            iconsInSequence3[4].getBoundingClientRect().left,
+        })
+
+        // --- ICON 1 ------------------------------------------------------------
+        .set(iconsInSequence2[0], { opacity: 0 }, "<")
+        .to(iconsInSequence3[0], { yPercent: -100 })
+        .to(iconsInSequence3[0], { x: 0 })
+        .to(sentence1span.current, { opacity: 1, x: 0 })
+        .to(iconsInSequence3[0], { x: 0 })
+
+        // --- ICON 2+ -----------------------------------------------------------
+        .set(iconsInSequence2[1], { opacity: 0 }, "<")
+        .to(iconsInSequence3[1], { x: 0 })
+        .to(iconsInSequence3[2], { y: 0 }, "<")
+        .set(iconsInSequence2[2], { opacity: 0 }, "<")
+        .to([iconsInSequence3[3], iconsInSequence3[4]], { y: 0 }, "<")
+        .set([iconsInSequence2[3], iconsInSequence2[4]], { opacity: 0 }, "<")
+        .to(sentence2span.current, { opacity: 1, x: 0 })
+        .to(iconsInSequence3[2], { x: 0 })
+        .to(sentence3span.current, { opacity: 1, x: 0 }, "<")
+        .to([iconsInSequence3[3], iconsInSequence3[4]], { x: 0 })
+        .to([sentence4span1.current, sentence4span2.current], {
+          x: 0,
           opacity: 1,
-          stagger: { each: 0.15, from: "end" },
-          onComplete: initST,
-        },
-      );
-
-      function initST() {
-        if ((initST as any)._done) return;
-        (initST as any)._done = true;
-        // --- DOM collections -----------------------------------------------------
-        const iconsInSequence2 = gsap.utils.toArray(
-          ".icon2",
-        ) as HTMLDivElement[];
-        const iconsInSequence3 = gsap.utils.toArray(
-          ".icon3",
-        ) as HTMLDivElement[];
-
-        // --- Geometry / baseline measurements -----------------------------------
-        const grid = grid1.current as HTMLDivElement;
-        const originalOffset =
-          -window.innerHeight / 2 + grid.getBoundingClientRect().height / 2;
-
-        // --- Intro -----------------------------------------------------
-
-        // --- Timeline (order preserved verbatim) --------------------------------
-        section1TL.current = gsap
-          .timeline({
-            defaults: { ease: "circ.inOut" },
-          })
-
-          // Pre-position icon3s relative to icon2s (x only)
-          .set(iconsInSequence3[0], {
-            x:
-              iconsInSequence2[0].getBoundingClientRect().left -
-              iconsInSequence3[0].getBoundingClientRect().left,
-          })
-          .set(iconsInSequence3[1], {
-            x:
-              iconsInSequence2[1].getBoundingClientRect().left -
-              iconsInSequence3[1].getBoundingClientRect().left,
-          })
-          .set(iconsInSequence3[2], {
-            x:
-              iconsInSequence2[2].getBoundingClientRect().left -
-              iconsInSequence3[2].getBoundingClientRect().left,
-          })
-          .set(iconsInSequence3[3], {
-            x:
-              iconsInSequence2[3].getBoundingClientRect().left -
-              iconsInSequence3[3].getBoundingClientRect().left,
-          })
-          .set(iconsInSequence3[4], {
-            x:
-              iconsInSequence2[4].getBoundingClientRect().left -
-              iconsInSequence3[4].getBoundingClientRect().left,
-          })
-
-          // Lift icon1s into place
-          .to(
-            [
-              jsLarge.current,
-              tsLarge.current,
-              twLarge.current,
-              nxLarge.current,
-              rxLarge.current,
-            ],
-            {
-              y: originalOffset,
-              stagger: { each: 0.15, from: "start" },
-            },
-          )
-          // Header + hero adjustments (synced)
-          // .to(section1.current, { paddingBottom: 0 }, "<")
-          .to(hero.current, { opacity: 0, yPercent: -25 }, "<")
-
-          // Disable interactions while animating
-          .set(grid, {
-            userSelect: "none",
-            pointerEvents: "none",
-          })
-          // Resize icon1s and keep vertical offset updated
-          .to(
-            [
-              jsLarge.current,
-              tsLarge.current,
-              twLarge.current,
-              nxLarge.current,
-              rxLarge.current,
-            ],
-            {
-              width: 60,
-              onUpdate: () => {
-                const newOffset =
-                  -window.innerHeight / 2 +
-                  grid.getBoundingClientRect().height / 2;
-                [
-                  jsLarge.current,
-                  tsLarge.current,
-                  twLarge.current,
-                  nxLarge.current,
-                  rxLarge.current,
-                ].forEach((el) => {
-                  gsap.set(el, { y: newOffset });
-                });
-              },
-            },
-          )
-          .to(grid, { gap: 0, paddingBottom: 0, userSelect: "none" }, "<")
-          .to(
-            [
-              jsLarge.current,
-              tsLarge.current,
-              twLarge.current,
-              nxLarge.current,
-              rxLarge.current,
-            ],
-            { width: 60 },
-          )
-          .set(
-            [
-              jsLarge.current,
-              tsLarge.current,
-              twLarge.current,
-              nxLarge.current,
-              rxLarge.current,
-            ],
-            { opacity: 0 },
-          )
-          .set(iconsInSequence3, { opacity: 1 });
-
-        section2TL.current = gsap
-          .timeline({
-            defaults: { ease: "circ.inOut" },
-          })
-
-          // --- ICON 1 ------------------------------------------------------------
-          .set(iconsInSequence2[0], { opacity: 0 }, "<")
-          .to(iconsInSequence3[0], { yPercent: -100 })
-          .to(iconsInSequence3[0], { x: 0 })
-          .to(sentence1span.current, { opacity: 1, x: 0 })
-          .to(iconsInSequence3[0], { x: 0 })
-
-          // --- ICON 2+ -----------------------------------------------------------
-          .set(iconsInSequence2[1], { opacity: 0 }, "<")
-          .to(iconsInSequence3[1], { x: 0 })
-          .to(iconsInSequence3[2], { y: 0 }, "<")
-          .set(iconsInSequence2[2], { opacity: 0 }, "<")
-          .to([iconsInSequence3[3], iconsInSequence3[4]], { y: 0 }, "<")
-          .set([iconsInSequence2[3], iconsInSequence2[4]], { opacity: 0 }, "<")
-          .to(sentence2span.current, { opacity: 1, x: 0 })
-          .to(iconsInSequence3[2], { x: 0 })
-          .to(sentence3span.current, { opacity: 1, x: 0 }, "<")
-          .to([iconsInSequence3[3], iconsInSequence3[4]], { x: 0 })
-          .to([sentence4span1.current, sentence4span2.current], {
-            x: 0,
-            opacity: 1,
-          });
-
-        // --- ScrollTrigger -------------------------------------------------------
-        const section1TS = ScrollTrigger.create({
-          trigger: section2.current,
-          pin: section1.current,
-          pinSpacing: false,
-          anticipatePin: 1,
-          start: "top bottom", // section2 enters the viewport from the bottom
-          end: "top top", // when section2's top reaches the top (now fully visible)
-          scrub: true,
-          animation: section1TL.current,
-          invalidateOnRefresh: true,
-          // markers: true,
         });
 
-        const section2TS = ScrollTrigger.create({
-          trigger: section3.current,
-          pin: section2.current,
-          pinSpacing: false,
-          anticipatePin: 1,
-          start: "top bottom", // section2 enters the viewport from the bottom
-          end: "top top", // when section2's top reaches the top (now fully visible)
-          scrub: true,
-          animation: section2TL.current,
-          invalidateOnRefresh: true,
-          // markers: true,
-        });
-      }
+      // --- ScrollTrigger -------------------------------------------------------
+      const section1TS = ScrollTrigger.create({
+        trigger: section2.current,
+        pin: section1.current,
+        pinSpacing: false,
+        anticipatePin: 1,
+        start: "top bottom", // section2 enters the viewport from the bottom
+        end: "top top", // when section2's top reaches the top (now fully visible)
+        scrub: true,
+        animation: section1TL.current,
+        invalidateOnRefresh: true,
+        // markers: true,
+      });
+
+      const section2TS = ScrollTrigger.create({
+        trigger: section3.current,
+        pin: section2.current,
+        pinSpacing: false,
+        anticipatePin: 1,
+        start: "top bottom", // section2 enters the viewport from the bottom
+        end: "top top", // when section2's top reaches the top (now fully visible)
+        scrub: true,
+        animation: section2TL.current,
+        invalidateOnRefresh: true,
+        // markers: true,
+      });
+      // }
 
       return () => {
         //@ts-ignore
@@ -278,58 +274,58 @@ export default function Home() {
   }
 
   return (
-    <div className="relative text-white" ref={page}>
+    <div className="//overflow-x-clip relative text-white" ref={page}>
       <section
-        className="//pb-4 relative flex h-dvh flex-col px-8"
+        className="//pb-4 //px-8 relative flex h-dvh flex-col"
         ref={section1}
       >
         <Hero ref={hero} tech={tech} />
 
         <div
-          className="group relative mx-auto flex w-fit items-start justify-center gap-1 self-end justify-self-end pb-4 opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-full [&>.icon1]:max-w-24"
+          className="group relative mx-auto mt-auto flex w-full items-start justify-center gap-1 self-end overflow-x-clip pb-4 opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-full [&>.icon1]:max-w-20"
           ref={grid1}
         >
           <div
-            className="icon1 translate-y-2.5 cursor-pointer opacity-0 will-change-auto"
+            className="icon1 //translate-y-2.5 //opacity-0 cursor-pointer will-change-auto"
             onClick={() => setTech("js")}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
+            // onMouseMove={handleMouseMove}
+            // onMouseLeave={handleMouseLeave}
             ref={jsLarge}
           >
             <Javacript className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 translate-y-2.5 cursor-pointer opacity-0 will-change-auto"
+            className="icon1 //translate-y-2.5 //opacity-0 cursor-pointer will-change-auto"
             onClick={() => setTech("ts")}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
+            // onMouseMove={handleMouseMove}
+            // onMouseLeave={handleMouseLeave}
             ref={tsLarge}
           >
             <TypeScript className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 translate-y-2.5 cursor-pointer opacity-0 will-change-auto"
+            className="icon1 //translate-y-2.5 //opacity-0 cursor-pointer will-change-auto"
             onClick={() => setTech("tw")}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
+            // onMouseMove={handleMouseMove}
+            // onMouseLeave={handleMouseLeave}
             ref={twLarge}
           >
             <Tailwind className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 translate-y-2.5 cursor-pointer opacity-0 will-change-auto"
+            className="icon1 //translate-y-2.5 //opacity-0 cursor-pointer will-change-auto"
             onClick={() => setTech("nx")}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
+            // onMouseMove={handleMouseMove}
+            // onMouseLeave={handleMouseLeave}
             ref={nxLarge}
           >
             <Next className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 translate-y-2.5 cursor-pointer opacity-0 will-change-auto"
+            className="icon1 //translate-y-2.5 //opacity-0 cursor-pointer will-change-auto"
             onClick={() => setTech("rx")}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
+            // onMouseMove={handleMouseMove}
+            // onMouseLeave={handleMouseLeave}
             ref={rxLarge}
           >
             <React className="size-full rounded-lg border-2 border-black" />
@@ -408,12 +404,9 @@ export default function Home() {
           </div>
         </div> */}
       </section>
-      <section
-        className="relative flex h-dvh flex-col px-8 pb-4"
-        ref={section2}
-      >
-        <div className="font-archivo absolute top-1/2 left-0 w-full -translate-y-1/2 font-bold tracking-tight">
-          <div className="relative mx-auto flex h-full w-fit justify-center opacity-100">
+      <section className="relative flex h-dvh flex-col" ref={section2}>
+        <div className="font-archivo absolute top-1/2 left-0 w-full -translate-y-1/2 overflow-x-clip font-bold tracking-tight">
+          <div className="relative mx-auto flex h-full w-full justify-center overflow-x-clip opacity-100">
             {/* SENTENCE 1 */}
             <div className="sentence1 absolute -top-full left-0 z-10 mx-auto flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
               <span

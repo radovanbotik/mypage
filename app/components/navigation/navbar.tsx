@@ -43,7 +43,6 @@ export function Navbar() {
     },
     { scope: navbar },
   );
-
   return (
     <div
       className="fixed inset-x-0 top-4 z-40 mx-auto flex w-full max-w-7xl -translate-y-3 items-center px-4 py-4 text-white opacity-0 sm:px-6"

@@ -47,11 +47,11 @@ export default function Hero({ ref, tech }: Props) {
         y: 8,
         letterSpacing: "0.02em",
       });
-      gsap.set(animatedWord2.current, {
-        opacity: 0,
-        scale: 0.98,
-        filter: "none",
-      });
+      // gsap.set(animatedWord2.current, {
+      //   opacity: 0,
+      //   scale: 0.98,
+      //   filter: "none",
+      // });
 
       // Optional underline stroke-draw setup (if you enable the SVG)
       // if (underline.current) {
@@ -113,17 +113,17 @@ export default function Hero({ ref, tech }: Props) {
               duration: 0.28,
             },
             "start+=0.12",
-          );
-
-          tl.to(
-            animatedWord2.current,
-            {
-              scale: 1,
-              opacity: 1,
-              duration: 0.3,
-            },
-            "start+=0.22",
           )
+
+            // tl.to(
+            //   animatedWord2.current,
+            //   {
+            //     scale: 1,
+            //     opacity: 1,
+            //     duration: 0.3,
+            //   },
+            //   "start+=0.22",
+            // )
             // Glow pulse on settle
             .to(
               animatedWord2.current,
