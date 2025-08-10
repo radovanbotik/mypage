@@ -210,6 +210,7 @@ export default function Home() {
       const section1TS = ScrollTrigger.create({
         trigger: section2.current,
         pin: section1.current,
+        pinType: "transform",
         pinSpacing: false,
         anticipatePin: 1,
         start: "top bottom", // section2 enters the viewport from the bottom
@@ -223,6 +224,7 @@ export default function Home() {
       const section2TS = ScrollTrigger.create({
         trigger: section3.current,
         pin: section2.current,
+        pinType: "transform",
         pinSpacing: false,
         anticipatePin: 1,
         start: "top bottom", // section2 enters the viewport from the bottom
@@ -275,9 +277,9 @@ export default function Home() {
   }
 
   return (
-    <div className="//overflow-x-clip relative text-white" ref={page}>
+    <div className="relative text-white" ref={page}>
       <section
-        className="relative flex min-h-svh flex-col justify-between"
+        className="relative flex min-h-screen flex-col justify-between"
         ref={section1}
       >
         <Hero ref={hero} tech={tech} />
@@ -405,7 +407,7 @@ export default function Home() {
           </div>
         </div> */}
       </section>
-      <section className="relative flex min-h-svh flex-col" ref={section2}>
+      <section className="relative flex min-h-screen flex-col" ref={section2}>
         <div className="font-archivo absolute top-1/2 left-0 w-full -translate-y-1/2 overflow-x-clip font-bold tracking-tight">
           <div className="relative mx-auto flex h-full w-full justify-center overflow-x-clip opacity-100">
             {/* SENTENCE 1 */}
@@ -473,7 +475,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="min-h-svh" ref={section3}></section>
+      <section className="min-h-screen" ref={section3}></section>
     </div>
   );
 }
