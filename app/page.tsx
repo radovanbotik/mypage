@@ -282,13 +282,13 @@ export default function Home() {
   return (
     <div className="relative text-white" ref={page}>
       <section
-        className="//pb-8 relative flex h-screen min-h-svh flex-col justify-between"
+        className="relative flex h-screen min-h-svh flex-col justify-between"
         ref={section1}
       >
         <Hero ref={hero} tech={tech} />
 
         <div
-          className="group //[&>.icon1]:w-full //pb-4 relative mx-auto flex w-full justify-center gap-1 overflow-x-clip opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-30"
+          className="group //[&>.icon1]:w-full //pb-4 //relative absolute inset-x-0 bottom-0 left-0 mx-auto flex w-full justify-center gap-1 overflow-x-clip opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-30"
           ref={techstack}
         >
           <div
