@@ -257,10 +257,7 @@ export default function Home() {
     >
       {/* <FloatingCodeArtifacts ref={artifacts} /> */}
 
-      <section
-        className="//pt-40 relative flex h-dvh flex-col px-8 pb-4"
-        ref={header}
-      >
+      <section className="relative flex h-dvh flex-col px-8 pb-4" ref={header}>
         {/* <Socials /> */}
         <Hero ref={hero} tech={tech} />
         {/* <Stats /> */}
@@ -402,6 +399,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section
+        className="relative flex h-dvh flex-col px-8 pb-4"
+        ref={header}
+      ></section>
     </div>
   );
 }
