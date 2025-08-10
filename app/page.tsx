@@ -75,7 +75,9 @@ export default function Home() {
         .timeline({
           defaults: { ease: "circ.inOut" },
         })
-
+        // Header + hero adjustments (synced)
+        // .to(section1.current, { paddingBottom: 0 }, "<")
+        .to(hero.current, { opacity: 0, y: -20 })
         // Lift icon1s into place
         .to(
           [
@@ -89,14 +91,12 @@ export default function Home() {
             y: originalOffset,
             stagger: { each: 0.15, from: "start" },
           },
+          "+=0.1",
         )
         .set(grid, {
           userSelect: "none",
           pointerEvents: "none",
         })
-        // Header + hero adjustments (synced)
-        // .to(section1.current, { paddingBottom: 0 }, "<")
-        .to(hero.current, { opacity: 0, yPercent: -25 }, "<")
 
         // Disable interactions while animating
 
@@ -126,8 +126,9 @@ export default function Home() {
               });
             },
           },
+          "<",
         )
-        .to(grid, { gap: 0, paddingBottom: 0, userSelect: "none" }, "<")
+        // .to(grid, { gap: 0, paddingBottom: 0, userSelect: "none" }, "<")
         .to(
           [
             jsLarge.current,

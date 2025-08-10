@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Hanken_Grotesk, Archivo } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "./components/navigation/navbar";
-import StudioHeaderPattern from "./components/artifacts/pattern";
 import BackgroundGridRain from "./components/artifacts/backgroundGrid";
 
 const hankenGrotesk = Hanken_Grotesk({
@@ -32,9 +31,8 @@ export default function RootLayout({
       <body
         className={`${hankenGrotesk.variable} ${archivo.variable} relative h-full w-full overflow-x-hidden antialiased`}
       >
-        {/* <StudioHeaderPattern className="absolute top-0 left-0 size-full text-white" /> */}
         <Navbar />
-        {/* <BackgroundGridRain
+        <BackgroundGridRain
           spacing={24}
           dotColor="rgba(255,255,255,0.09)"
           background="#0b0d10"
@@ -43,7 +41,7 @@ export default function RootLayout({
           widthsPx={2}
           colors={["#10C7E8", "#27E0A3", "#F39B3D"]}
           speedRange={[140, 260]}
-        /> */}
+        />
         {children}
       </body>
     </html>
