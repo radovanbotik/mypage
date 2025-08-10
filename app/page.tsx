@@ -273,10 +273,10 @@ export default function Home() {
   return (
     <div className="//overflow-x-clip relative text-white" ref={page}>
       <section
-        className="relative flex h-dvh flex-col justify-between"
+        className="relative flex min-h-svh flex-col justify-between"
         ref={section1}
       >
-        {/* <Hero ref={hero} tech={tech} /> */}
+        <Hero ref={hero} tech={tech} />
 
         <div
           className="group relative mx-auto mt-auto flex w-fit gap-1 overflow-x-clip pb-4 opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-full [&>.icon1]:max-w-20"
@@ -401,7 +401,7 @@ export default function Home() {
           </div>
         </div> */}
       </section>
-      <section className="relative flex h-dvh flex-col" ref={section2}>
+      <section className="relative flex min-h-svh flex-col" ref={section2}>
         <div className="font-archivo absolute top-1/2 left-0 w-full -translate-y-1/2 overflow-x-clip font-bold tracking-tight">
           <div className="relative mx-auto flex h-full w-full justify-center overflow-x-clip opacity-100">
             {/* SENTENCE 1 */}
@@ -469,7 +469,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="h-dvh" ref={section3}></section>
+      <section className="min-h-svh" ref={section3}></section>
     </div>
   );
 }
