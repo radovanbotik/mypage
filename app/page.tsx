@@ -286,9 +286,9 @@ export default function Home() {
 
         <div
           className="group relative mx-auto mt-auto flex w-fit gap-1 overflow-x-clip pb-4 opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-full [&>.icon1]:max-w-20"
-          style={{
-            paddingBottom: `max(env(safe-area-inset-bottom, 0px), 12px)`,
-          }}
+          // style={{
+          //   paddingBottom: `max(env(safe-area-inset-bottom, 0px), 12px)`,
+          // }}
           ref={techstack}
         >
           <div
