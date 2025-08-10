@@ -66,7 +66,7 @@ export default function Home() {
       // --- Geometry / baseline measurements -----------------------------------
       const originalOffset =
         -window.innerHeight / 2 +
-        techstack.current.getBoundingClientRect().height / 2;
+        techstack.current!.getBoundingClientRect().height / 2;
 
       // --- Intro -----------------------------------------------------
 
@@ -108,7 +108,7 @@ export default function Home() {
             onUpdate: () => {
               const newOffset =
                 -window.innerHeight / 2 +
-                techstack.current.getBoundingClientRect().height / 2;
+                techstack.current!.getBoundingClientRect().height / 2;
               [
                 jsLarge.current,
                 tsLarge.current,
@@ -232,10 +232,8 @@ export default function Home() {
       // }
 
       return () => {
-        //@ts-ignore
-        section1TL.current.kill();
-        //@ts-ignore
-        section2TL.current.kill();
+        section1TL.current!.kill();
+        section2TL.current!.kill();
       };
     },
     { scope: page },
