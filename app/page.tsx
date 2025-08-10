@@ -276,10 +276,10 @@ export default function Home() {
         className="relative flex h-dvh flex-col justify-between"
         ref={section1}
       >
-        <Hero ref={hero} tech={tech} />
+        {/* <Hero ref={hero} tech={tech} /> */}
 
         <div
-          className="group relative mx-auto flex w-fit gap-1 overflow-x-clip pb-4 opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-full [&>.icon1]:max-w-20"
+          className="group relative mx-auto mt-auto flex w-fit gap-1 overflow-x-clip pb-4 opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-full [&>.icon1]:max-w-20"
           ref={techstack}
         >
           <div
