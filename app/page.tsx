@@ -281,10 +281,10 @@ export default function Home() {
 
   return (
     <div className="relative text-white" ref={page}>
-      <section className="flex h-screen min-h-svh flex-col" ref={section1}>
-        <div className="mx-auto mt-auto w-fit">
+      <section className="//min-h-svh //flex-col flex h-screen" ref={section1}>
+        <div className="//w-fit //mx-auto mt-auto">
           <div
-            className="icon1 inline-block size-16 cursor-pointer will-change-auto"
+            className="icon1 //will-change-auto inline-block size-16 cursor-pointer"
             // onClick={() => setTech("js")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
