@@ -40,6 +40,9 @@ export default function Home() {
   useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
+
+      const onVVResize = () => ScrollTrigger.refresh();
+      window.visualViewport?.addEventListener("resize", onVVResize);
       // gsap.to(
       //   [
       //     jsLarge.current,
@@ -232,8 +235,9 @@ export default function Home() {
       // }
 
       return () => {
-        section1TL.current!.kill();
-        section2TL.current!.kill();
+        window.visualViewport?.removeEventListener("resize", onVVResize);
+        section1TL.current?.kill();
+        section2TL.current?.kill();
       };
     },
     { scope: page },
