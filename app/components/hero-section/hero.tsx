@@ -279,8 +279,14 @@ export default function Hero({ ref, tech }: Props) {
   } as const;
 
   return (
+    <div className="flex h-[200vh] flex-col">
+      <div className="self-end justify-self-end"> this is end</div>
+    </div>
+  );
+
+  return (
     <div
-      className="z-10 mx-auto grid max-w-7xl flex-1 place-content-center pt-20 sm:px-6 lg:px-8 lg:pt-40"
+      className="z-10 mx-auto grid max-w-7xl flex-1 place-content-center pt-16 sm:px-6 lg:px-8 lg:pt-40"
       ref={ref}
     >
       <div className="px-6 text-center sm:px-16">
