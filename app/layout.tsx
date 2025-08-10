@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${hankenGrotesk.variable} ${archivo.variable} relative h-full w-full overflow-x-hidden antialiased`}
+        className={`${hankenGrotesk.variable} ${archivo.variable} relative antialiased`}
       >
         <Navbar />
         <BackgroundGridRain
