@@ -37,7 +37,7 @@ export default function Home() {
     null,
   );
 
-  useGSAP(
+  /*  useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
 
@@ -244,6 +244,7 @@ export default function Home() {
     },
     { scope: page },
   );
+  */
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const { clientX: mouseX, clientY: mouseY } = e;
