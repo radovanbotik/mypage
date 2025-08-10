@@ -289,7 +289,7 @@ export default function Home() {
         {/* <Hero ref={hero} tech={tech} /> */}
 
         <div
-          className="group //[&>.icon1]:w-full //pb-4 //relative //flex //absolute //inset-x-0 bottom-0 left-0 mx-auto justify-center gap-1 overflow-x-clip opacity-100 lg:gap-3 [&>.icon1]:h-30 [&>.icon1]:w-30"
+          className="group //[&>.icon1]:w-full //pb-4 //relative //flex //absolute //inset-x-0 bottom-0 left-0 mx-auto justify-center gap-1 overflow-x-clip opacity-100 lg:gap-3 [&>.icon1]:h-14 [&>.icon1]:w-14"
           ref={techstack}
         >
           <div
