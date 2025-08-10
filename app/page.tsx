@@ -128,7 +128,10 @@ export default function Home() {
         )
         .to(
           techstack.current,
-          { gap: 0, paddingBottom: 0, userSelect: "none" },
+          {
+            gap: 0,
+            //  paddingBottom: 0, userSelect: "none"
+          },
           "<",
         )
         .to(
@@ -284,7 +287,7 @@ export default function Home() {
         <Hero ref={hero} tech={tech} />
 
         <div
-          className="group //[&>.icon1]:w-full relative mx-auto flex w-full justify-center gap-1 overflow-x-clip pb-12 opacity-100 lg:gap-3 lg:pb-8 [&>.icon1]:aspect-square [&>.icon1]:w-30"
+          className="group //[&>.icon1]:w-full //pb-4 relative mx-auto flex w-full justify-center gap-1 overflow-x-clip opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-30"
           ref={techstack}
         >
           <div
