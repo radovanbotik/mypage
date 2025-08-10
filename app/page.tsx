@@ -37,7 +37,7 @@ export default function Home() {
     null,
   );
 
-  useGSAP(
+  /*useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
       ScrollTrigger.config({ ignoreMobileResize: true });
@@ -246,6 +246,7 @@ export default function Home() {
     },
     { scope: page },
   );
+*/
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const { clientX: mouseX, clientY: mouseY } = e;
