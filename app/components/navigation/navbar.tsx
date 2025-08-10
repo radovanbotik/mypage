@@ -52,7 +52,7 @@ export function Navbar() {
       <a href="#" className="font-hanken flex items-center gap-2">
         <span className="sr-only">Your profile</span>
         <Image
-          src={"/images/photos/me_usual_64.png"}
+          src={"/images/logo/logo_64.png"}
           alt="radovan"
           width={64}
           height={51}

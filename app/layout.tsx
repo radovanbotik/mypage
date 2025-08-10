@@ -36,14 +36,13 @@ export default function RootLayout({
         <Navbar />
         <BackgroundGridRain
           spacing={24}
-          dotRadius={1}
           dotColor="rgba(255,255,255,0.09)"
-          streakColor="rgba(0, 255, 255, 0.65)" // tweak to brand
           background="#0b0d10"
-          streakCount={8}
-          speedRange={[80, 260]}
+          streakCount={16}
           streakLength={160}
-          zIndex={0}
+          widthsPx={2}
+          colors={["#10C7E8", "#27E0A3", "#F39B3D"]}
+          speedRange={[140, 260]}
         />
         {children}
       </body>
