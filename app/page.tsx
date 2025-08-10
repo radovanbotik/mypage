@@ -352,13 +352,12 @@ export default function Home() {
           </div>
         </div>
       </section> */}
-      <section
+      {/* <section
         className="relative flex h-screen min-h-svh flex-col"
         ref={section2}
       >
         <div className="font-archivo absolute top-1/2 left-0 w-full -translate-y-1/2 overflow-x-clip font-bold tracking-tight">
           <div className="relative mx-auto flex h-full w-full justify-center overflow-x-clip opacity-100">
-            {/* SENTENCE 1 */}
             <div className="sentence1 absolute -top-full left-0 z-10 mx-auto flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
               <span
                 className="text-content -translate-x-[10%] opacity-0"
@@ -370,7 +369,6 @@ export default function Home() {
                 <Javacript className="size-full rounded-lg border-2 border-black" />
               </div>
             </div>
-            {/* SENTENCE 2 */}
             <div className="sentence2 absolute top-0 left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] rounded-xl opacity-0 will-change-transform">
                 <TypeScript className="size-full rounded-lg border-2 border-black" />
@@ -379,7 +377,6 @@ export default function Home() {
                 TypeScript knows I’m lying.
               </span>
             </div>
-            {/* SENTENCE 3 */}
             <div className="sentence3 absolute top-full left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
               <span
                 className="text-content -translate-x-[10%] opacity-0"
@@ -391,7 +388,6 @@ export default function Home() {
                 <Tailwind className="size-full rounded-lg border-2 border-black" />
               </div>
             </div>
-            {/* SENTENCE 4 */}
             <div className="sentence4 absolute top-[200%] left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
               <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-[200%] rounded-xl opacity-0 will-change-transform">
                 <Next className="size-full rounded-lg border-2 border-black" />
@@ -414,7 +410,6 @@ export default function Home() {
               </span>
             </div>
 
-            {/* ICONS */}
             <div className="icon2 invsible h-[60px] w-[60px] rounded-lg border-2 border-black opacity-0 will-change-transform"></div>
             <div className="icon2 invsible h-[60px] w-[60px] rounded-lg border-2 border-black opacity-0 will-change-transform"></div>
             <div className="icon2 invsible h-[60px] w-[60px] rounded-lg border-2 border-black opacity-0 will-change-transform"></div>
@@ -422,7 +417,7 @@ export default function Home() {
             <div className="icon2 invsible h-[60px] w-[60px] rounded-lg border-2 border-black opacity-0 will-change-transform"></div>
           </div>
         </div>
-      </section>
+      </section> */}
       <section className="h-screen min-h-svh" ref={section3}></section>
     </div>
   );
