@@ -290,7 +290,7 @@ export default function Home() {
             // onMouseLeave={handleMouseLeave}
             // ref={jsLarge}
           >
-            <Javacript className="size-full rounded-lg border-2 border-black" />
+            <Javacript className="size-full h-16 w-16 rounded-lg border-2 border-black" />
           </div>
         </div>
       </section>
