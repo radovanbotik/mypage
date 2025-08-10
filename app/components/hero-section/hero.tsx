@@ -280,7 +280,7 @@ export default function Hero({ ref, tech }: Props) {
 
   return (
     <div
-      className="//flex-1 place-content-centersm:px-6 z-10 mx-auto grid max-w-7xl lg:px-8"
+      className="z-10 mx-auto grid max-w-7xl flex-1 items-center pt-22 sm:px-6 lg:px-8"
       ref={ref}
     >
       <div className="px-6 text-center sm:px-16">

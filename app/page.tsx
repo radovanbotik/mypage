@@ -126,11 +126,11 @@ export default function Home() {
           },
           "<",
         )
-        // .to(
-        //   techstack.current,
-        //   { gap: 0, paddingBottom: 0, userSelect: "none" },
-        //   "<",
-        // )
+        .to(
+          techstack.current,
+          { gap: 0, paddingBottom: 0, userSelect: "none" },
+          "<",
+        )
         .to(
           [
             jsLarge.current,
@@ -278,13 +278,13 @@ export default function Home() {
   return (
     <div className="relative text-white" ref={page}>
       <section
-        className="relative flex h-screen min-h-svh flex-col justify-between pt-22 pb-8 lg:pt-40"
+        className="//pb-8 relative flex h-screen min-h-svh flex-col justify-between"
         ref={section1}
       >
         <Hero ref={hero} tech={tech} />
 
         <div
-          className="group //[&>.icon1]:w-full relative mx-auto flex w-full justify-center gap-1 overflow-x-clip opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-30"
+          className="group //[&>.icon1]:w-full relative mx-auto flex w-full justify-center gap-1 overflow-x-clip pb-12 opacity-100 lg:gap-3 lg:pb-8 [&>.icon1]:aspect-square [&>.icon1]:w-30"
           ref={techstack}
         >
           <div
