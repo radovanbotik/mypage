@@ -283,15 +283,13 @@ export default function Home() {
     <div className="relative text-white" ref={page}>
       <section className="//min-h-svh //flex-col flex h-screen" ref={section1}>
         <div className="//w-fit //mx-auto mt-auto">
-          <div
-            className="icon1 //will-change-auto inline-block size-16 cursor-pointer"
-            // onClick={() => setTech("js")}
-            // onMouseMove={handleMouseMove}
-            // onMouseLeave={handleMouseLeave}
-            // ref={jsLarge}
+          {/* <div
+            className="icon1 //will-change-auto inline-block cursor-pointer"
+        
           >
             <Javacript className="size-full h-16 w-16 rounded-lg border-2 border-black" />
-          </div>
+          </div> */}
+          <div className="size-16 bg-green-400"></div>
         </div>
       </section>
 
