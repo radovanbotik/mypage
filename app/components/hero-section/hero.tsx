@@ -279,12 +279,6 @@ export default function Hero({ ref, tech }: Props) {
   } as const;
 
   return (
-    <div className="flex h-[200vh] flex-col">
-      <div className="self-end justify-self-end"> this is end</div>
-    </div>
-  );
-
-  return (
     <div
       className="z-10 mx-auto grid max-w-7xl flex-1 place-content-center pt-16 sm:px-6 lg:px-8 lg:pt-40"
       ref={ref}
@@ -295,14 +289,12 @@ export default function Hero({ ref, tech }: Props) {
           ref={headline}
         >
           <span ref={animatedWord1 as any}>
-            {tech
-              ? headlineSubheadline[tech].headline
-              : headlineSubheadline["default"].headline}
+            {(tech && headlineSubheadline[tech].headline) ||
+              headlineSubheadline["default"].headline}
           </span>
           <span className="relative inline-block" ref={animatedWord2 as any}>
-            {tech
-              ? headlineSubheadline[tech].underline
-              : headlineSubheadline["default"].underline}
+            {(tech && headlineSubheadline[tech].underline) ||
+              headlineSubheadline["default"].underline}
             {/* <Underline1
               className="pointer-events-none absolute left-0 top-0 size-full translate-y-1/2"
               ref={underline}
@@ -314,9 +306,8 @@ export default function Hero({ ref, tech }: Props) {
           className="mx-auto mt-6 max-w-xl translate-y-3 text-lg/8 text-pretty text-gray-300 opacity-0"
           ref={subheadline}
         >
-          {tech
-            ? headlineSubheadline[tech].subheadline
-            : headlineSubheadline["default"].subheadline}
+          {(tech && headlineSubheadline[tech].subheadline) ||
+            headlineSubheadline["default"].subheadline}
         </p>
 
         <div className="mx-auto mt-10 mb-6 flex w-fit flex-col gap-4 lg:flex-row">
