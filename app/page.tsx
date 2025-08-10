@@ -37,7 +37,7 @@ export default function Home() {
     null,
   );
 
-  /*  useGSAP(
+  useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
 
@@ -244,7 +244,6 @@ export default function Home() {
     },
     { scope: page },
   );
-  */
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const { clientX: mouseX, clientY: mouseY } = e;
@@ -280,13 +279,16 @@ export default function Home() {
   return (
     <div className="relative text-white" ref={page}>
       <section
-        className="relative flex min-h-screen flex-col justify-between"
+        className="relative flex min-h-svh flex-col justify-between"
         ref={section1}
       >
         <Hero ref={hero} tech={tech} />
 
         <div
           className="group relative mx-auto mt-auto flex w-fit gap-1 overflow-x-clip pb-4 opacity-100 lg:gap-3 [&>.icon1]:aspect-square [&>.icon1]:w-full [&>.icon1]:max-w-20"
+          style={{
+            paddingBottom: `max(env(safe-area-inset-bottom, 0px), 12px)`,
+          }}
           ref={techstack}
         >
           <div
@@ -335,80 +337,8 @@ export default function Home() {
             <React className="size-full rounded-lg border-2 border-black" />
           </div>
         </div>
-
-        {/* <div className="font-archivo absolute top-1/2 left-0 w-full -translate-y-1/2 font-bold tracking-tight">
-          <div className="relative mx-auto flex h-full w-fit justify-center opacity-100">
-            <div className="sentence1 absolute -top-full left-0 z-10 mx-auto flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
-              <span
-                className="text-content -translate-x-[10%] opacity-0"
-                ref={sentence1span}
-              >
-                I tame JavaScript.
-              </span>
-              <div className="icon3 inline-block aspect-square h-[60px] w-[60px] translate-y-full opacity-0 will-change-transform">
-                <div className="overflow-hidden rounded-md border-2 border-black">
-                  <Javacript className="size-full" />
-                </div>
-              </div>
-            </div>
-            <div className="sentence2 absolute top-0 left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
-              <div className="icon3 inline-block aspect-square h-[60px] w-[60px] rounded-xl opacity-0 will-change-transform">
-                <div className="overflow-hidden rounded-md border-2 border-black">
-                  <TypeScript className="size-full" />
-                </div>
-              </div>
-              <span className="text-content opacity-0" ref={sentence2span}>
-                TypeScript knows I’m lying.
-              </span>
-            </div>
-            <div className="sentence3 absolute top-full left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
-              <span
-                className="text-content -translate-x-[10%] opacity-0"
-                ref={sentence3span}
-              >
-                I leave CSS on read with Tailwind.
-              </span>
-              <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-full rounded-xl opacity-0 will-change-transform">
-                <div className="overflow-hidden rounded-md border-2 border-black">
-                  <Tailwind className="size-full" />
-                </div>
-              </div>
-            </div>
-            <div className="sentence4 absolute top-[200%] left-0 z-10 flex w-full items-center justify-center gap-1 text-xl whitespace-nowrap select-none lg:text-6xl">
-              <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-[200%] rounded-xl opacity-0 will-change-transform">
-                <div className="overflow-hidden rounded-md border-2 border-black">
-                  <Next className="size-full" />
-                </div>
-              </div>
-              <span
-                className="text-content -translate-x-[10%] opacity-0"
-                ref={sentence4span1}
-              >
-                Next.js routes.
-              </span>
-              <div className="icon3 inline-block aspect-square h-[60px] w-[60px] -translate-y-[200%] justify-center rounded-xl opacity-0 will-change-transform">
-                <div className="overflow-hidden rounded-md border-2 border-black">
-                  <React className="size-full" />
-                </div>
-              </div>
-
-              <span
-                className="text-content translate-x-[10%] opacity-0"
-                ref={sentence4span2}
-              >
-                React renders.
-              </span>
-            </div>
-
-            <div className="icon2 invsible aspect-square w-[60px] rounded-xl opacity-0 will-change-transform"></div>
-            <div className="icon2 invsible aspect-square w-[60px] rounded-xl opacity-0 will-change-transform"></div>
-            <div className="icon2 invsible aspect-square w-[60px] rounded-xl opacity-0 will-change-transform"></div>
-            <div className="icon2 invsible aspect-square w-[60px] rounded-xl opacity-0 will-change-transform"></div>
-            <div className="icon2 invsible aspect-square w-[60px] rounded-xl opacity-0 will-change-transform"></div>
-          </div>
-        </div> */}
       </section>
-      <section className="relative flex min-h-screen flex-col" ref={section2}>
+      <section className="relative flex min-h-svh flex-col" ref={section2}>
         <div className="font-archivo absolute top-1/2 left-0 w-full -translate-y-1/2 overflow-x-clip font-bold tracking-tight">
           <div className="relative mx-auto flex h-full w-full justify-center overflow-x-clip opacity-100">
             {/* SENTENCE 1 */}
@@ -476,7 +406,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="min-h-screen" ref={section3}></section>
+      <section className="min-h-svh" ref={section3}></section>
     </div>
   );
 }
