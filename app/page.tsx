@@ -296,7 +296,7 @@ export default function Home() {
         {/* <div className="flex-1"></div> */}
 
         <div
-          className="group //[&>.icon1]:w-full //pb-4 //relative //flex //absolute //inset-x-0 bottom-0 left-0 mx-auto justify-center gap-1 overflow-x-clip opacity-100 lg:gap-3 [&>.icon1]:h-14 [&>.icon1]:w-14"
+          className="group flex justify-center gap-1 overflow-x-clip opacity-100 lg:gap-1 [&>.icon1]:h-14 [&>.icon1]:w-14"
           ref={techstack}
         >
           <div
