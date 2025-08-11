@@ -280,10 +280,10 @@ export default function Hero({ ref, tech }: Props) {
 
   return (
     <div
-      className="z-10 mx-auto grid max-w-7xl flex-1 items-center pt-22 sm:px-6 lg:px-8"
+      className="//pt-22 z-10 mx-auto flex max-w-7xl flex-1 items-center justify-center"
       ref={ref}
     >
-      <div className="px-6 text-center sm:px-16">
+      <div className="space-y-5 px-10 py-5 text-center">
         <h2
           className="translate-y-5 text-4xl font-semibold tracking-normal text-balance text-white opacity-0 sm:text-5xl"
           ref={headline}
@@ -303,14 +303,14 @@ export default function Hero({ ref, tech }: Props) {
         </h2>
 
         <p
-          className="mx-auto mt-6 max-w-xl translate-y-3 text-lg/8 text-pretty text-gray-300 opacity-0"
+          className="mx-auto max-w-xl translate-y-3 text-lg/8 text-pretty text-gray-300 opacity-0"
           ref={subheadline}
         >
           {(tech && headlineSubheadline[tech].subheadline) ||
             headlineSubheadline["default"].subheadline}
         </p>
 
-        <div className="mx-auto mt-10 mb-6 flex w-fit flex-col gap-4 lg:flex-row">
+        <div className="mx-auto flex max-w-sm flex-col justify-center gap-4 sm:flex-row">
           <Link
             href="#"
             className="inline-block rounded-md bg-white px-3.5 py-2.5 text-sm/6 font-semibold whitespace-nowrap text-gray-900 opacity-0 shadow-[0px_0px_8px_2px_#ffffff33] will-change-[transform,opacity] hover:bg-gray-100 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white"
