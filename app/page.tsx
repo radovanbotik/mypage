@@ -290,17 +290,20 @@ export default function Home() {
         </div>
       </section> */}
 
-      <section className="flex h-screen min-h-svh flex-col" ref={section1}>
+      <section
+        className="flex h-svh min-h-svh flex-col items-center"
+        ref={section1}
+      >
         {/* <div className="flex h-full w-full flex-col justify-between"> */}
         <Hero ref={hero} tech={tech} />
         {/* <div className="flex-1"></div> */}
 
         <div
-          className="group flex justify-center gap-1 overflow-x-clip opacity-100 lg:gap-1 [&>.icon1]:h-14 [&>.icon1]:w-14"
+          className="group flex justify-center gap-1 justify-self-end-safe overflow-x-clip opacity-100 lg:gap-1"
           ref={techstack}
         >
           <div
-            className="icon1 inline-block cursor-pointer will-change-auto"
+            className="icon1 inline-block h-16 w-16 cursor-pointer will-change-auto"
             onClick={() => setTech("js")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
@@ -309,7 +312,7 @@ export default function Home() {
             <Javacript className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 inline-block cursor-pointer will-change-auto"
+            className="icon1 inline-block h-16 w-16 cursor-pointer will-change-auto"
             onClick={() => setTech("ts")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
@@ -318,7 +321,7 @@ export default function Home() {
             <TypeScript className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 inline-block cursor-pointer will-change-auto"
+            className="icon1 inline-block h-16 w-16 cursor-pointer will-change-auto"
             onClick={() => setTech("tw")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
@@ -327,7 +330,7 @@ export default function Home() {
             <Tailwind className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 inline-block cursor-pointer will-change-auto"
+            className="icon1 inline-block h-16 w-16 cursor-pointer will-change-auto"
             onClick={() => setTech("nx")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
@@ -336,7 +339,7 @@ export default function Home() {
             <Next className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 inline-block cursor-pointer will-change-auto"
+            className="icon1 inline-block h-16 w-16 cursor-pointer will-change-auto"
             onClick={() => setTech("rx")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
@@ -348,7 +351,7 @@ export default function Home() {
         {/* </div> */}
       </section>
       {/* <section
-        className="relative flex h-screen min-h-svh flex-col"
+        className="relative flex h-svh min-h-svh flex-col"
         ref={section2}
       >
         <div className="font-archivo absolute top-1/2 left-0 w-full -translate-y-1/2 overflow-x-clip font-bold tracking-tight">
@@ -413,7 +416,7 @@ export default function Home() {
           </div>
         </div>
       </section> */}
-      <section className="h-screen min-h-svh" ref={section3}></section>
+      <section className="h-svh min-h-svh" ref={section3}></section>
     </div>
   );
 }

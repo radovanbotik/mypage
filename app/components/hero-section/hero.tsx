@@ -280,7 +280,7 @@ export default function Hero({ ref, tech }: Props) {
 
   return (
     <div
-      className="//pt-22 z-10 mx-auto flex max-w-7xl flex-1 items-center justify-center"
+      className="//pt-22 z-10 flex max-w-7xl grow-1 items-center justify-center"
       ref={ref}
     >
       <div className="space-y-5 px-10 py-5 text-center">
