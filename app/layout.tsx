@@ -31,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${hankenGrotesk.variable} ${archivo.variable} relative antialiased`}
       >
-        {/* <Navbar /> */}
+        <Navbar />
         <BackgroundGridRain
           spacing={24}
           dotColor="rgba(255,255,255,0.09)"

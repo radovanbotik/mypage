@@ -37,28 +37,28 @@ export default function Home() {
     null,
   );
 
-  /*useGSAP(
+  useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
       ScrollTrigger.config({ ignoreMobileResize: true });
 
       // const onVVResize = () => ScrollTrigger.refresh();
       // window.visualViewport?.addEventListener("resize", onVVResize);
-      // gsap.to(
-      //   [
-      //     jsLarge.current,
-      //     tsLarge.current,
-      //     twLarge.current,
-      //     nxLarge.current,
-      //     rxLarge.current,
-      //   ],
-      //   {
-      //     y: 0,
-      //     opacity: 1,
-      //     stagger: { each: 0.15, from: "end" },
-      //     onComplete: initST,
-      //   },
-      // );
+      gsap.to(
+        [
+          jsLarge.current,
+          tsLarge.current,
+          twLarge.current,
+          nxLarge.current,
+          rxLarge.current,
+        ],
+        {
+          y: 0,
+          opacity: 1,
+          stagger: { each: 0.15, from: "end" },
+          // onComplete: initST,
+        },
+      );
 
       // function initST() {
       //   if ((initST as any)._done) return;
@@ -109,6 +109,7 @@ export default function Home() {
           ],
           {
             width: 60,
+            height: 60,
             onUpdate: () => {
               const newOffset =
                 -window.innerHeight / 2 +
@@ -130,7 +131,8 @@ export default function Home() {
           techstack.current,
           {
             gap: 0,
-            //  paddingBottom: 0, userSelect: "none"
+            padding: 0,
+            userSelect: "none",
           },
           "<",
         )
@@ -246,7 +248,6 @@ export default function Home() {
     },
     { scope: page },
   );
-*/
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const { clientX: mouseX, clientY: mouseY } = e;
@@ -294,16 +295,14 @@ export default function Home() {
         className="flex h-svh min-h-svh flex-col items-center"
         ref={section1}
       >
-        {/* <div className="flex h-full w-full flex-col justify-between"> */}
         <Hero ref={hero} tech={tech} />
-        {/* <div className="flex-1"></div> */}
 
         <div
-          className="group flex justify-center gap-1 justify-self-end-safe overflow-x-clip opacity-100 lg:gap-1"
+          className="group flex justify-center gap-1 justify-self-end p-2.5 opacity-100"
           ref={techstack}
         >
           <div
-            className="icon1 inline-block h-16 w-16 cursor-pointer will-change-auto"
+            className="icon1 inline-block h-16 w-16 translate-y-2.5 cursor-pointer opacity-0 will-change-auto"
             onClick={() => setTech("js")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
@@ -312,7 +311,7 @@ export default function Home() {
             <Javacript className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 inline-block h-16 w-16 cursor-pointer will-change-auto"
+            className="icon1 inline-block h-16 w-16 translate-y-2.5 cursor-pointer opacity-0 will-change-auto"
             onClick={() => setTech("ts")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
@@ -321,7 +320,7 @@ export default function Home() {
             <TypeScript className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 inline-block h-16 w-16 cursor-pointer will-change-auto"
+            className="icon1 inline-block h-16 w-16 translate-y-2.5 cursor-pointer opacity-0 will-change-auto"
             onClick={() => setTech("tw")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
@@ -330,7 +329,7 @@ export default function Home() {
             <Tailwind className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 inline-block h-16 w-16 cursor-pointer will-change-auto"
+            className="icon1 inline-block h-16 w-16 translate-y-2.5 cursor-pointer opacity-0 will-change-auto"
             onClick={() => setTech("nx")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
@@ -339,7 +338,7 @@ export default function Home() {
             <Next className="size-full rounded-lg border-2 border-black" />
           </div>
           <div
-            className="icon1 inline-block h-16 w-16 cursor-pointer will-change-auto"
+            className="icon1 inline-block h-16 w-16 translate-y-2.5 cursor-pointer opacity-0 will-change-auto"
             onClick={() => setTech("rx")}
             // onMouseMove={handleMouseMove}
             // onMouseLeave={handleMouseLeave}
@@ -350,7 +349,7 @@ export default function Home() {
         </div>
         {/* </div> */}
       </section>
-      {/* <section
+      <section
         className="relative flex h-svh min-h-svh flex-col"
         ref={section2}
       >
@@ -415,7 +414,7 @@ export default function Home() {
             <div className="icon2 invsible h-[60px] w-[60px] rounded-lg border-2 border-black opacity-0 will-change-transform"></div>
           </div>
         </div>
-      </section> */}
+      </section>
       <section className="h-svh min-h-svh" ref={section3}></section>
     </div>
   );
